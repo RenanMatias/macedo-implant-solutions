@@ -1,13 +1,16 @@
 # Application definition
 
 INSTALLED_APPS = [
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Third party apps
+    # Debug toolbar
     'debug_toolbar',
+    # Django REST Framework
+    'rest_framework',
     # Local apps
 ]
