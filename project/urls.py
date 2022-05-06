@@ -17,6 +17,11 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+    # Include the URLs from the project's apps
+    path('', include('home.urls')),
     path('admin/', admin.site.urls),
+
+    # Include the URLs from third-party apps
     path('__debug__/', include('debug_toolbar.urls')),
+    path('__reload__/', include('django_browser_reload.urls')),
 ]

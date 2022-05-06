@@ -10,7 +10,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Debug toolbar
     'debug_toolbar',
-    # Django REST Framework
+    # Django REST framework
     'rest_framework',
     # Local apps
+    'home',
 ]

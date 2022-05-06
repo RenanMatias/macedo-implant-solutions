@@ -9,3 +9,5 @@ from .i18n import *
 from .messages import *
 from .security import *
 from .templates import *
+
+from .tailwind import *  # isort:skip
