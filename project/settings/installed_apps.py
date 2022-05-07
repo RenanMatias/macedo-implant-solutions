@@ -13,5 +13,5 @@ INSTALLED_APPS = [
     # Django REST framework
     'rest_framework',
     # Local apps
-    'home',
+    'apps.home',
 ]
