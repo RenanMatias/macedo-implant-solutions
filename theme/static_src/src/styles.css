@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.header-button {
+    @apply text-base font-medium;
+}

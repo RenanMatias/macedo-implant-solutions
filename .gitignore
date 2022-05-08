@@ -126,5 +126,4 @@ local_settings.py
 _local_settings.py
 gunicorn-error-log
 db.sqlite3
-static/
 syncServer.sh
