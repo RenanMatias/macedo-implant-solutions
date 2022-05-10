@@ -43,9 +43,8 @@ module.exports = {
     ],
     theme: {
         extend: {
-            backgroundImage: {
-                'logo': 'url("/static/global/img/logo.png")',
-                'pattern-light': 'url("/static/global/img/bg-pattern-light.svg")',
+            fontFamily: {
+                sans: 'Poppins'
             }
         },
     },
