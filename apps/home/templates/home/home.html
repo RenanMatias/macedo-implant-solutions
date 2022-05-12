@@ -8,13 +8,13 @@
   <div class="flex flex-col">
     <header class="absolute flex items-center justify-end inset-0 h-32">
       <div class="flex md:space-x-10 space-x-5 justify-end md:mr-20 sm:mr-10 mr-5">
-        <a href="#" class="flex flex-col justify-center sm:visible invisible header-a transition hover:underline underline-offset-8 decoration-2 decoration-indigo-600 font-bold">
+        <a href="#quem-somos" class="flex flex-col justify-center sm:visible invisible header-a transition hover:underline underline-offset-8 decoration-2 decoration-indigo-600 font-bold">
           QUEM SOMOS
         </button>
-        <a href="#" class=" flex flex-col justify-center sm:visible invisible header-a transition hover:underline underline-offset-8 decoration-2 decoration-indigo-600 font-bold">
+        <a href="#nossos-numeros" class="flex flex-col justify-center sm:visible invisible header-a transition hover:underline underline-offset-8 decoration-2 decoration-indigo-600 font-bold">
           NOSSOS NÚMEROS
         </button>
-        <a href="#" class=" flex flex-col justify-center sm:visible invisible header-a transition hover:underline underline-offset-8 decoration-2 decoration-indigo-600 font-bold">
+        <a href="#contact" class="flex flex-col justify-center sm:visible invisible header-a transition hover:underline underline-offset-8 decoration-2 decoration-indigo-600 font-bold">
           CONTATO
         </a>
         <a href="#" class="transition flex flex-col justify-center cursor-auto w-40 h-16 
@@ -26,7 +26,7 @@
         </a>
       </div>
     </header>
-    <main class="h-[178.75rem]">
+    <main>
       <!-- Cover -->
       <div class="h-96 md:h-[900px]">
         <div class="flex items-center justify-center h-full bg-[length:2459px] bg-no-repeat bg-center bg-fixed"
@@ -38,7 +38,11 @@
       <!-- Who we are -->
       <div class="flex flex-col">
         <div class="my-11 flex flex-col space-y-6">
-          <div class="flex justify-center text-4xl sm:text-7xl font-semibold text-stone-700">Quem somos</div>
+          <div class="flex justify-center text-4xl sm:text-7xl font-semibold text-stone-700">
+            <h1 id="quem-somos">
+              Quem somos
+            </h1>
+          </div>
           <div class="flex justify-center">
             <div class="h-1 w-28 bg-indigo-600"></div>
           </div>
@@ -59,8 +63,9 @@
       </div>      
       <!-- End Who we are -->
       <!-- Numbers -->
-      <div class="grid gap-4 md:flex flex-col md:flex-row justify-center md:justify-evenly bg-cover bg-center bg-no-repeat bg-fixed py-20 my-11"
-      style="background-image: url(/static/global/img/bg-pattern-polygon-luminary.svg);">
+      <div class="grid gap-4 md:flex flex-col md:flex-row justify-center md:justify-evenly bg-cover bg-center bg-no-repeat bg-fixed py-20 mt-11"
+      style="background-image: url(/static/global/img/bg-pattern-polygon-luminary.svg);"
+      id="nossos-numeros">
         <div class="h-56 w-56">
           <div class="h-56 grid grid-cols-1 content-evenly text-center">
             <p class="bi bi-people-fill text-white text-7xl"></p>
@@ -83,8 +88,91 @@
           </div>
         </div>
       </div>
-      
       <!-- End Numbers -->
+      <!-- Contact -->
+      <div class="grid lg:grid-cols-5" id="contact">
+        <div class="lg:col-span-3">
+          <div class="mt-20 mb-10 flex flex-col space-y-6">
+            <div class="flex justify-center text-4xl font-semibold text-stone-700 sm:text-5xl">
+              <h1>Fale Conosco</h1>
+            </div>
+            <div class="flex justify-center">
+              <div class="h-1 w-28 bg-indigo-600"></div>
+            </div>
+            <div class="container mx-auto px-8">
+              <form action="submit" class="text-stone-700">
+                <label for="name">Nome</label><br />
+                <input type="text" name="name" id="name" class="w-full rounded border border-gray-300 bg-gray-50 p-2 transition focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50" placeholder="Digite seu nome" /><br />
+                <div class="my-3">
+                  <label for="mail">E-mail</label><br />
+                  <input type="email" name="mail" id="mail" class="w-full rounded border border-gray-300 bg-gray-50 p-2 transition focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50" placeholder="Digite seu e-mail" /><br />
+                </div>
+                <label for="message">Mensagem</label><br />
+                <textarea name="message" id="message" cols="30" rows="10" class="w-full resize-none rounded border border-gray-300 bg-gray-50 p-2 transition focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50" placeholder="Digite sua mensagem"></textarea>
+                <div class="flex justify-center">
+                  <button type="reset" class="w-60 h-14 rounded-md bg-indigo-600 hover:bg-indigo-800 text-sm font-medium leading-10 text-white shadow-lg shadow-indigo-500/50">
+                    <span class="bi bi-check2 text-2xl inline-block align-middle mr-1"></span> Enviar Mensagem
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="order-first bg-neutral-100 text-stone-700 lg:order-last lg:col-span-2">
+          <div class="mt-20 mb-10 flex flex-col space-y-6">
+            <div class="flex justify-center text-4xl font-semibold sm:text-5xl">
+              <h1>Nosso Contato</h1>
+            </div>
+            <div class="flex justify-center">
+              <div class="h-1 w-28 bg-indigo-600"></div>
+            </div>
+          </div>
+          <div class="mt-6 mb-20 flex flex-col space-y-10 pl-20 pr-6">
+            <a href="https://goo.gl/maps/peM8TpGFVZWujeCE9" target="_blank">
+              <div class="flex">
+                <div class="bi bi-geo-alt-fill mr-3 text-4xl"></div>
+                <div>
+                  <h2 class="text-lg sm:text-2xl font-bold">Macedo Implant Solutions</h2>
+                  <p class="text-base sm:text-lg font-light">
+                    Rua Aristoteles da Cunha, 1200 / 22<br />
+                    Rio das Ostras<br />
+                    Cep 28896-165<br />
+                    RJ
+                  </p>
+                </div>
+              </div>
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=5521993167050" target="_blank">
+              <div class="flex">
+                <div class="bi bi-whatsapp mr-3 text-4xl"></div>
+                <div>
+                  <h2 class="text-lg sm:text-2xl font-bold">Telefone para Dentistas</h2>
+                  <p class="text-base sm:text-lg font-light">+55 (21) 99316-7050</p>
+                </div>
+              </div>
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=5521998691981" target="_blank">
+              <div class="flex">
+                <div class="bi bi-whatsapp mr-3 text-4xl"></div>
+                <div>
+                  <h2 class="text-lg sm:text-2xl font-bold">Telefone para Pacientes</h2>
+                  <p class="text-base sm:text-lg font-light">+55 (21) 99869-1981</p>
+                </div>
+              </div>
+            </a>
+            <a href="mailto:xavierimplante@gmail.com" target="_blank">
+              <div class="flex">
+                <div class="bi bi-envelope-fill mr-3 text-4xl"></div>
+                <div>
+                  <h2 class="text-lg sm:text-2xl font-bold">E-mail</h2>
+                  <p class="text-base sm:text-lg font-light">xavierimplante@gmail.com</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>      
+      <!-- End Contact -->
     </main>
 
     {% include 'global/partials/footer.html' %}
