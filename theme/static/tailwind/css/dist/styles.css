@@ -893,6 +893,10 @@ select {
   cursor: auto;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .resize-none {
   resize: none;
 }
