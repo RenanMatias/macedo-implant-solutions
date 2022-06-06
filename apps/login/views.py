@@ -1,3 +1,6 @@
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.http import Http404
 from django.urls import reverse
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
@@ -13,7 +16,24 @@ class LoginView(FormView):
         return reverse('login:create')
 
     def form_valid(self, form):
-        return super().form_valid(form)
+        if not self.request.POST:
+            raise Http404
+
+        authenticated_user = authenticate(
+            username=form.cleaned_data.get('username', ''),
+            password=form.cleaned_data.get('password', ''),
+        )
+
+        if authenticated_user is not None:
+            messages.success(self.request, 'Você está logado.')
+            login(self.request, authenticated_user)
+            return super().form_valid(form)
+        else:
+            messages.error(self.request, 'Credenciais inválida.')
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Nome de usuário ou senha inválida.')
+        return super().form_invalid(form)
 
 
 class LoginCreate(TemplateView):
