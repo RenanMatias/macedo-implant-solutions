@@ -67,5 +67,16 @@
         "html": "\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\"",
         "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
         "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/__pycache__": true,
+        ".pytest_cache": true,
+        ".mypy_cache": true,
     }
 }

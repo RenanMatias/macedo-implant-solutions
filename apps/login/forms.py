@@ -1,12 +1,18 @@
 from django import forms
-from django.contrib.auth.models import User
+
+from utils.django_forms import add_placeholder
 
 
-class LoginForm(forms.ModelForm):
+class LoginForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        add_placeholder(self.fields['username'], 'Insira seu nome de usuário')
+        add_placeholder(self.fields['password'], 'Insira sua senha')
 
-    class Meta:
-        model = User
-        fields = [
-            'username',
-            'password'
-        ]
+    username = forms.CharField(
+        label='Nome de Usuário',
+    )
+    password = forms.CharField(
+        label='Senha',
+        widget=forms.PasswordInput()
+    )
