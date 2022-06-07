@@ -7,20 +7,27 @@
 
   <div class="flex items-center justify-center bg-cover bg-center min-h-screen min-w-full"
   style="background-image: url(/static/global/img/bg-pattern-light.svg);">
-    <div class="flex flex-col items-center w-[500px] h-[600px]">
-        <div class="bg-indigo-500 flex justify-center items-center rounded-t-md px-28 h-36">
+    <div class="flex flex-col items-center w-[400px]">
+        <div class="bg-indigo-500 flex justify-center items-center rounded-t-md px-20 h-28">
             <img src="{% static 'global/img/logo-white.png' %}" alt="">
         </div>
         <div class="flex flex-col items-center p-9 gap-5 rounded-b-md bg-white h-full w-full">
-            <div class="flex flex-col p-3 gap-3">
-                <h1 class="text-stone-500 text-3xl font-semibold text-center">Login</h1>
-                <p class="text-stone-400 text-center">Digite seu nome de usuário e senha para acessar a aplicação.</p>
+            <div class="flex flex-col gap-3">
+                <h1 class="text-stone-500 text-2xl font-semibold text-center">Login</h1>
+                <p class="text-stone-400 text-center text-sm">Digite seu nome de usuário e senha para acessar a aplicação.</p>
             </div>
-            <form class="form-content flex flex-col gap-5 w-full" action="{{ form.action }}" method="POST">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form class="form-content flex flex-col gap-4 w-full" action="{{ form.action }}" method="POST">
                 {% csrf_token %}
                 {% for field in form %}
                     <div class="flex flex-col items-start gap-2 w-full">
-                        <label class="text-sm font-medium text-stone-600" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <label class="font-medium text-stone-600" for="{{ field.id_for_label }}">{{ field.label }}</label>
                         {{ field }}
                     </div>
                 {% endfor %}

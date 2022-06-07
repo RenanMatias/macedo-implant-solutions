@@ -14,3 +14,23 @@
     font-size: 16px;
     line-height: 24px;
 }
+
+.message .message-debug {
+    @apply bg-stone-50 w-full p-3 rounded border-l-4 border-solid border-stone-500 text-stone-600 text-sm
+}
+
+.message-error {
+    @apply bg-red-50 w-full p-3 rounded border-l-4 border-solid border-red-500 text-red-600 text-sm
+}
+
+.message-success {
+    @apply bg-green-50 w-full p-3 rounded border-l-4 border-solid border-green-500 text-green-600 text-sm
+}
+
+.message-info {
+    @apply bg-blue-50 w-full p-3 rounded border-l-4 border-solid border-blue-500 text-blue-600 text-sm
+}
+
+.message-warning {
+    @apply bg-yellow-50 w-full p-3 rounded border-l-4 border-solid border-yellow-500 text-yellow-600 text-sm
+}
