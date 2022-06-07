@@ -10,13 +10,37 @@ from .forms import LoginForm
 
 
 class LoginView(FormView):
+    """Page to login
+
+    Args:
+        FormView (class): A view that displays a login form.
+
+    Raises:
+        Http404: If the request is not POST method.
+    """
     template_name = 'login/login.html'
     form_class = LoginForm
 
     def get_success_url(self):
+        """get url if form
+
+        Returns:
+            view: access the sitema home page.
+        """
         return reverse('login:create')
 
     def form_valid(self, form):
+        """Valid the form.
+
+        Args:
+            form (class): FormMixin
+
+        Raises:
+            Http404: If the request is not POST method
+
+        Returns:
+            Get system home page if form valid or displays a flash message if form not validated.
+        """
         if not self.request.POST:
             raise Http404
 
@@ -33,6 +57,14 @@ class LoginView(FormView):
             return redirect('login:login')
 
     def form_invalid(self, form):
+        """If the form is invalid, displays a flash message.
+
+        Args:
+            form (class): FormMixin
+
+        Returns:
+            form: render the invalid form
+        """
         messages.error(self.request, 'Nome de usuário ou senha inválida.')
         return super().form_invalid(form)
 
