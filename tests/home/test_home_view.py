@@ -1,6 +1,7 @@
-from apps.home.views import site
 from django.test import TestCase
 from django.urls import resolve, reverse
+
+from apps.home.views import site
 
 
 class HomeViewTest(TestCase):

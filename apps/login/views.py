@@ -22,7 +22,7 @@ class LoginView(FormView):
     form_class = LoginForm
 
     def get_success_url(self):
-        """get url if form
+        """get url if form validated
 
         Returns:
             view: access the sitema home page.
