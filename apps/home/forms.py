@@ -4,6 +4,11 @@ from utils.django_forms import add_placeholder
 
 
 class HomeForm(forms.Form):
+    """Form to send message to the company
+
+    Args:
+        forms (Django BaseForm): Create a form with name, e-mails and message fields
+    """
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

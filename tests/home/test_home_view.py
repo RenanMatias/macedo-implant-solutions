@@ -21,4 +21,4 @@ class HomeViewTest(TestCase):
 
     def test_home_view_loads_correct_form(self):
         response = self.client.get(reverse('home'))
-        self.assertIsInstance(response.context('form'), HomeForm)
+        self.assertIsInstance(response.context['form'], HomeForm)
