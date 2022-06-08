@@ -99,15 +99,26 @@
               <div class="h-1 w-28 bg-indigo-600"></div>
             </div>
             <div class="container mx-auto px-8">
-              <form action="submit" class="text-stone-700">
-                <label for="name">Nome</label><br />
-                <input type="text" name="name" id="name" class="w-full rounded border border-gray-300 bg-gray-50 p-2 transition focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50" placeholder="Digite seu nome" /><br />
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+              <form action="submit" class="form-content">
+                {% csrf_token %}
+                <!-- Name -->
+                <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label><br />
+                {{ form.name }}
+                <!-- Email -->
                 <div class="my-3">
-                  <label for="mail">E-mail</label><br />
-                  <input type="email" name="mail" id="mail" class="w-full rounded border border-gray-300 bg-gray-50 p-2 transition focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50" placeholder="Digite seu e-mail" /><br />
+                    <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label><br />
+                    {{ form.email }}
                 </div>
-                <label for="message">Mensagem</label><br />
-                <textarea name="message" id="message" cols="30" rows="10" class="w-full resize-none rounded border border-gray-300 bg-gray-50 p-2 transition focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50" placeholder="Digite sua mensagem"></textarea>
+                <!-- Message -->
+                <label for="{{ form.message.id_for_label }}">{{ form.message.label }}</label><br />
+                {{ form.message }}
                 <div class="flex justify-center">
                   <button type="reset" class="w-60 h-14 mt-3 rounded-md bg-indigo-600 hover:bg-indigo-800 text-sm font-medium leading-10 text-white shadow-lg shadow-indigo-500/50">
                     <span class="bi bi-check2 text-2xl inline-block align-middle mr-1"></span> Enviar Mensagem

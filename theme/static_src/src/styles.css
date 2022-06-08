@@ -1,18 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 .header-a {
     @apply text-base font-medium;
 }
 
 .form-content input {
-    width: 100%;
-    border-radius: 4px;
-    background-color: white;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    @apply w-full rounded bg-gray-50 border-gray-300 font-normal text-base text-stone-700;
+}
+
+.form-content textarea {
+    @apply w-full rounded bg-gray-50 border-gray-300 font-normal text-base text-stone-700;
 }
 
 .message .message-debug {
