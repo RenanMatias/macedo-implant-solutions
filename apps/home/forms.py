@@ -3,7 +3,7 @@ from django import forms
 from utils.django_forms import add_placeholder
 
 
-class HomeForm(forms.Form):
+class ContactForm(forms.Form):
     """Form to send message to the company
 
     Args:

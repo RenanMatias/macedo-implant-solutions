@@ -7,7 +7,7 @@
     "python.testing.pytestArgs": [], // -x to bail
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Args": [
-        "--max-line-length=120",
+        "--max-line-length=120"
         // "--ignore="
     ],
     "python.linting.mypyEnabled": true,
@@ -15,9 +15,7 @@
         "--load-plugins=pylint_django",
         "--errors-only"
     ],
-    "python.formatting.autopep8Args": [
-        "--indent-size=4"
-    ],
+    "python.formatting.autopep8Args": ["--indent-size=4"],
     "python.defaultInterpreterPath": "venv/bin/python",
     "[python]": {
         "editor.defaultFormatter": "ms-python.python", // ms-python.python
@@ -36,7 +34,7 @@
         "editor.quickSuggestions": {
             "other": true,
             "comments": true,
-            "strings": true,
+            "strings": true
         }
     },
     "files.associations": {
@@ -77,6 +75,7 @@
         "**/Thumbs.db": true,
         "**/__pycache__": true,
         ".pytest_cache": true,
-        ".mypy_cache": true,
-    }
+        ".mypy_cache": true
+    },
+    "cSpell.enableFiletypes": ["python"]
 }
