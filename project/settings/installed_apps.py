@@ -14,5 +14,6 @@ INSTALLED_APPS = [
     'rest_framework',
     # Local apps
     'apps.home',
-    'apps.login'
+    'apps.login',
+    'apps.core',
 ]
