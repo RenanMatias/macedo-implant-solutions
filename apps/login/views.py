@@ -25,7 +25,7 @@ class LoginView(FormView):
         """get url if form validated
 
         Returns:
-            view: access the sitema home page.
+            view: access the system home page.
         """
         return reverse('login:create')
 
