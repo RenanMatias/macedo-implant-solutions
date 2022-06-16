@@ -1,13 +1,13 @@
 from django.contrib.messages import get_messages
 from django.core import mail
-from django.test import TestCase
+from django.test import SimpleTestCase
 from django.urls import resolve, reverse
 
 from apps.home.forms import ContactForm
 from apps.home.views import HomeView
 
 
-class HomeViewTest(TestCase):
+class HomeViewTest(SimpleTestCase):
 
     def test_home_view_function_is_correct(self):
         view = resolve(reverse('home'))
