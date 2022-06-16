@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login
 from django.http import Http404
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 
 from .forms import LoginForm
@@ -27,7 +26,7 @@ class LoginView(FormView):
         Returns:
             view: access the system home page.
         """
-        return reverse('login:create')
+        return reverse('core:dashboard')
 
     def form_valid(self, form):
         """Valid the form.
@@ -54,7 +53,7 @@ class LoginView(FormView):
             return super().form_valid(form)
         else:
             messages.error(self.request, 'Credenciais inválida.')
-            return redirect('login:login')
+            return redirect('login')
 
     def form_invalid(self, form):
         """If the form is invalid, displays a flash message.
@@ -67,7 +66,3 @@ class LoginView(FormView):
         """
         messages.error(self.request, 'Nome de usuário ou senha inválida.')
         return super().form_invalid(form)
-
-
-class LoginCreate(TemplateView):
-    template_name = 'login/create.html'
