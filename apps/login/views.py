@@ -1,8 +1,11 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views.generic.base import View
 from django.views.generic.edit import FormView
 
 from .forms import LoginForm
@@ -66,3 +69,27 @@ class LoginView(FormView):
         """
         messages.error(self.request, 'Nome de usuário ou senha inválida.')
         return super().form_invalid(form)
+
+
+@method_decorator(
+    login_required(
+        login_url='login',
+    ),
+    name='dispatch'
+)
+class LogoutView(View):
+    def get(self, request):
+        # Enable this code only when logout link is included in templates
+        """
+        if not request.POST:
+            messages.error(request, 'Você não está logado.')
+            raise Http404
+
+        if request.POST.get('username') != request.user.username:
+            messages.error(request, 'Usuário logado inválido.')
+            raise Http404
+        """
+
+        messages.success(request, 'Logout realizado com sucesso.')
+        logout(request)
+        return redirect(reverse('login'))
