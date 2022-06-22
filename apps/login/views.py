@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -37,14 +36,9 @@ class LoginView(FormView):
         Args:
             form (class): FormMixin
 
-        Raises:
-            Http404: If the request is not POST method
-
         Returns:
             Get system home page if form valid or displays a flash message if form not validated.
         """
-        if not self.request.POST:
-            raise Http404
 
         authenticated_user = authenticate(
             username=form.cleaned_data.get('username', ''),
@@ -83,11 +77,11 @@ class LogoutView(View):
         """
         if not request.POST:
             messages.error(request, 'Você não está logado.')
-            raise Http404
+            raise Http404()
 
         if request.POST.get('username') != request.user.username:
             messages.error(request, 'Usuário logado inválido.')
-            raise Http404
+            raise Http404()
         """
 
         messages.success(request, 'Logout realizado com sucesso.')

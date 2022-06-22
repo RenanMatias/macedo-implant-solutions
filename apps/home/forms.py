@@ -1,4 +1,5 @@
 from django import forms
+from django.core.mail import send_mail
 
 from utils.django_forms import add_placeholder
 
@@ -30,3 +31,19 @@ class ContactForm(forms.Form):
         required=True,
         widget=forms.Textarea
     )
+
+    def send_email(self, form):
+        subject = "Contato do site"
+        body = {
+            'name': form.cleaned_data['name'],
+            'email': form.cleaned_data['email'],
+            'message': form.cleaned_data['message'],
+        }
+        message = f"Nome: {body['name']}\nE-mail: {body['email']}\nMensagem: {body['message']}"
+
+        send_mail(
+            subject,
+            message,
+            'admin@example.com',
+            ['admin@example.com'],
+        )
