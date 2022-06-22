@@ -16,4 +16,5 @@ INSTALLED_APPS = [
     'apps.home',
     'apps.login',
     'apps.core',
+    'apps.users',
 ]

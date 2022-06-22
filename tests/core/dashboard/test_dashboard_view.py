@@ -1,9 +1,8 @@
-# from django.test import TestCase
-from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import resolve, reverse
 
 from apps.core.views import DashboardView
+from apps.users.models import User
 
 
 class DashboardViewTest(TestCase):
