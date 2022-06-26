@@ -1,11 +1,17 @@
 {% extends 'global/base.html' %}
+{% load static %}
 
 {% block title %}Dashboard{% endblock title %}
 
 {% block content %}
+    <div class="flex bg-gray-50">
+        {% include 'core/partials/nav.html' %}
+        <div class="flex w-screen flex-col">
+            {% include 'core/partials/header.html' %}
+            <main class="flex flex-grow">
 
-    <h1>Tela de Dashboard</h1>
-
-    {% include 'global/partials/footer.html' %}
-
+            </main>
+            {% include 'core/partials/footer.html' %}
+        </div>
+    </div>
 {% endblock content %}
