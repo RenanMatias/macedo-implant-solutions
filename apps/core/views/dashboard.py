@@ -12,12 +12,3 @@ from django.views.generic.base import TemplateView
 )
 class DashboardView(TemplateView):
     template_name = 'core/dashboard.html'
-
-    def get_context_data(self, *args, **kwargs):
-        ctx = super().get_context_data(*args, **kwargs)
-        ctx.update(
-            {
-                'display_nav': 'dashboard'
-            }
-        )
-        return ctx
