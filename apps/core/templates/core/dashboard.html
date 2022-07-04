@@ -53,38 +53,11 @@
         </nav>
         <div class="flex w-full min-h-screen flex-col">
             {% include 'core/partials/header.html' %}
-            <main class="flex flex-grow">
-                
+            <main class="flex flex-grow flex-col p-10 items-center justify-center">
+                <img class="object-contain w-96 contrast-50 brightness-50 drop-shadow-sm" src="{% static 'global/img/logo.png' %}" alt="">
             </main>
             {% include 'core/partials/footer.html' %}
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            let value = $("#menu").attr("id");
-
-            $("#menu").click(function () {
-                if (value === "menu") {
-                    $("#nav-close").show();
-                    $("#nav-open").hide();
-                    value = "close"
-                } else {
-                    $("#nav-close").hide();
-                    $("#nav-open").show();
-                    value = "menu"
-                }
-            })
-        });
-        $("#dropdown").on("click", function(e){
-            e.preventDefault();
-            
-            if($(this).hasClass("open")) {
-              $(this).removeClass("open");
-              $(this).children("ul").slideUp("fast");
-            } else {
-              $(this).addClass("open");
-              $(this).children("ul").slideDown("fast");
-            }
-          });
-    </script>
+    {% include 'core/partials/scripts.html' %}
 {% endblock content %}
