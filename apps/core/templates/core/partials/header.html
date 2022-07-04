@@ -1,16 +1,36 @@
-<header class="bg-white flex h-20 justify-between items-center pl-3 pr-10">
-  <button class="text-2xl text-gray-700 cursor-pointer" type="submit" id="menu">
-    <i class="bi bi-list"></i><span class="invisible">Menu</span>
-  </button>
-  <div class="flex items-center gap-3 py-2 h-full">
-    <div class="flex-none py-6 px-3 first:pl-6 last:pr-6">
-        <div class="flex flex-col items-center justify-center gap-3">
-          <img class="border border-indigo-500 w-14 h-14 rounded-full" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=80">
-        </div>
-      </div>
-    <div class="hidden sm:flex flex-col">
-      <strong class="text-base text-gray-500">Anna Rhoderick</strong>
-      <span class="text-sm font-light text-gray-500">Perfil</span>
-    </div>
-  </div>
-</header>
+<header class="flex h-20 justify-between items-center bg-white pl-3 pr-10">
+    <button class="cursor-pointer text-2xl text-gray-700" type="submit" id="menu"><i class="bi bi-list"></i><span class="invisible">Menu</span></button>
+    <ul>
+      <li id="dropdown">
+        <a class="flex h-20 items-center gap-3" href="#">
+          <div class="flex-none py-6 px-3 first:pl-6 last:pr-6">
+            <div class="flex flex-col items-center justify-center gap-3">
+              <img class="h-14 w-14 rounded-full border border-indigo-500" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=80" />
+            </div>
+          </div>
+          <div class="hidden flex-col text-left sm:flex">
+            <strong class="text-base text-gray-500">Anna Rhoderick</strong>
+            <span class="text-sm font-light text-gray-500">Perfil</span>
+          </div>
+        </a>
+        <ul class="hidden absolute left-auto right-10 z-10 m-0 min-h-[118px] min-w-[218px] gap-3 rounded bg-white p-3 text-gray-500 shadow-md">
+          <li class="hover:text-black transition">
+            <a href="#" class="flex items-center h-11">
+              <div class="w-11 h-11 flex justify-center items-center">
+                <i class="bi bi-person-circle"></i>
+              </div>
+              <div>Minha Conta</div>
+            </a>
+          </li>
+          <li class="hover:text-black transition">
+            <a href="#" class="flex items-center h-11">
+              <div class="w-11 h-11 flex justify-center items-center">
+                <i class="bi bi-box-arrow-right"></i>
+              </div>
+              <div>Logout</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </header>
