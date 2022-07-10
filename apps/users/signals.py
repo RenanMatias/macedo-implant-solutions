@@ -7,7 +7,10 @@ from apps.users.models import User
 
 
 def delete_picture(instance):
-    os.remove(instance.picture.path)
+    try:
+        os.remove(instance.picture.path)
+    except (ValueError, FileNotFoundError):
+        pass
 
 
 @receiver(pre_delete, sender=User)

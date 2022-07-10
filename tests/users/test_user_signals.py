@@ -42,10 +42,15 @@ class UserSignalsTest(TestCase):
     def test_create_new_user_with_image_file(self):
         self.assertNotEqual(self.user_with_picture.picture, '')
 
-    def test_delete_user_without_image_file_raise_FileNotFoundError(self):
+    def test_delete_user_with_image_file_raise_FileNotFoundError(self):
         self.user_with_picture.delete()
         with self.assertRaises(FileNotFoundError):
             os.remove(self.user_with_picture.picture.path)
+
+    def test_delete_user_without_image_file_raise_FileNotFoundError(self):
+        self.user_without_picture.delete()
+        with self.assertRaises(ValueError):
+            os.remove(self.user_without_picture.picture.path)
 
     def test_user_update_with_same_image_file(self):
         user_with_picture = self.user_with_picture
