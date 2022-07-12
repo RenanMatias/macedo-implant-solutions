@@ -64,7 +64,7 @@ class User(AbstractUser):
                 new_width,
                 new_height
             ),
-            Image.LANCZOS
+            Image.Resampling.LANCZOS
         )
 
         new_image.save(
@@ -75,10 +75,8 @@ class User(AbstractUser):
 
     def save(self, *args, **kwargs):
         saved = super().save(*args, **kwargs)
+
         if self.picture:
-            try:
-                self.resize_image(self.picture)
-            except FileNotFoundError:
-                pass
+            self.resize_image(self.picture)
 
         return saved
