@@ -1,7 +1,7 @@
-$(document).ready(function () {
+$(document).ready(function() {
     let value = $("#menu").attr("id");
 
-    $("#menu").click(function () {
+    $("#menu").click(function() {
         if (value === "menu") {
             $("#nav-close").show();
             $("#nav-open").hide();
@@ -13,9 +13,7 @@ $(document).ready(function () {
         }
     })
 });
-$("#dropdown").on("click", function (e) {
-    e.preventDefault();
-
+$("#dropdown").on("click", function(e) {
     if ($(this).hasClass("open")) {
         $(this).removeClass("open");
         $(this).children("ul").slideUp("fast");

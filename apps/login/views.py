@@ -73,17 +73,6 @@ class LoginView(FormView):
 )
 class LogoutView(View):
     def get(self, request):
-        # Enable this code only when logout link is included in templates
-        """
-        if not request.POST:
-            messages.error(request, 'Você não está logado.')
-            raise Http404()
-
-        if request.POST.get('username') != request.user.username:
-            messages.error(request, 'Usuário logado inválido.')
-            raise Http404()
-        """
-
         messages.success(request, 'Logout realizado com sucesso.')
         logout(request)
         return redirect(reverse('login'))
