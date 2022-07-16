@@ -27,8 +27,8 @@ class Client(models.Model):
         max_length=50
     )
     nome = models.CharField(max_length=255)
-    cpf = models.CharField(max_length=11, null=True, blank=True)
-    cnpj = models.CharField(max_length=14, null=True, blank=True)
+    cpf = models.CharField(max_length=11, null=True, blank=True, unique=True)
+    cnpj = models.CharField(max_length=14, null=True, blank=True, unique=True)
     endereco = models.CharField(max_length=255, null=True, blank=True)
     numero = models.CharField(max_length=10, null=True, blank=True)
     complemento = models.CharField(max_length=255, null=True, blank=True)
@@ -43,17 +43,17 @@ class Client(models.Model):
     cro = models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField(max_length=255, null=True, blank=True)
     desconto = models.DecimalField(
-        decimal_places=2,
+        decimal_places=0,
         default=0,
-        max_digits=5,
-        null=True,
-        blank=True
+        max_digits=3
     )
-    data_aniversario = models.DateTimeField(null=True, blank=True)
+    data_aniversario = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     username = models.ForeignKey(
         User,
-        on_delete=models.SET_NULL,
-        null=True
+        on_delete=models.PROTECT
     )
+
+    def __str__(self):
+        return self.nome
