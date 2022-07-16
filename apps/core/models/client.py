@@ -16,6 +16,7 @@ class Client(models.Model):
         ('Inativo', 'Inativo'),
     )
 
+    # Fields
     tipo = models.CharField(
         choices=TIPO_CHOICES,
         max_length=50
@@ -26,23 +27,29 @@ class Client(models.Model):
         max_length=50
     )
     nome = models.CharField(max_length=255)
-    cpf = models.CharField(max_length=11)
-    cnpj = models.CharField(max_length=14)
-    endereco = models.CharField(max_length=255)
-    numero = models.CharField(max_length=10)
-    complemento = models.CharField(max_length=255)
-    bairro = models.CharField(max_length=255)
-    municipio = models.CharField(max_length=255)
-    cidade = models.CharField(max_length=255)
-    uf = models.CharField(max_length=2)
-    cep = models.CharField(max_length=10)
-    telefone = models.CharField(max_length=15)
-    celular = models.CharField(max_length=15)
-    cro_uf = models.CharField(max_length=50)
-    cro = models.CharField(max_length=50)
-    email = models.EmailField(max_length=255)
-    desconto = models.DecimalField(decimal_places=2, default=0, max_digits=5)
-    data_aniversario = models.DateTimeField()
+    cpf = models.CharField(max_length=11, null=True, blank=True)
+    cnpj = models.CharField(max_length=14, null=True, blank=True)
+    endereco = models.CharField(max_length=255, null=True, blank=True)
+    numero = models.CharField(max_length=10, null=True, blank=True)
+    complemento = models.CharField(max_length=255, null=True, blank=True)
+    bairro = models.CharField(max_length=255, null=True, blank=True)
+    municipio = models.CharField(max_length=255, null=True, blank=True)
+    cidade = models.CharField(max_length=255, null=True, blank=True)
+    uf = models.CharField(max_length=2, null=True, blank=True)
+    cep = models.CharField(max_length=10, null=True, blank=True)
+    telefone = models.CharField(max_length=15, null=True, blank=True)
+    celular = models.CharField(max_length=15, null=True, blank=True)
+    cro_uf = models.CharField(max_length=50, null=True, blank=True)
+    cro = models.CharField(max_length=50, null=True, blank=True)
+    email = models.EmailField(max_length=255, null=True, blank=True)
+    desconto = models.DecimalField(
+        decimal_places=2,
+        default=0,
+        max_digits=5,
+        null=True,
+        blank=True
+    )
+    data_aniversario = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     username = models.ForeignKey(
