@@ -2,6 +2,7 @@ from django.core.exceptions import ValidationError
 from parameterized import parameterized
 
 from tests.core.models.test_core_models_base import CoreTestBase
+from utils.cpf_cnpj_validation import cnpj_validate, cpf_validate
 
 
 class ClientModelTest(CoreTestBase):
@@ -49,8 +50,16 @@ class ClientModelTest(CoreTestBase):
         with self.assertRaises(ValidationError):
             client.full_clean()
 
-    def test_client_cpf_validation(self):
-        client = self.make_client(
-            cpf='12345678901',
-            username=self.make_user()
-        )
+    @parameterized.expand([
+        '20921238070',
+        '799.959.230-76'
+    ])
+    def test_client_CPF_validation(self, cpf):
+        self.assertTrue(cpf_validate(cpf))
+
+    @parameterized.expand([
+        '55551065000117',
+        '92.515.869/0001-97',
+    ])
+    def test_client_CNPJ_validation(self, cnpj):
+        self.assertTrue(cnpj_validate(cnpj))

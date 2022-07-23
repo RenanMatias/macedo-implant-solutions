@@ -38,7 +38,7 @@ def cpf_validate(cpf: str) -> bool:
     return True
 
 
-def cnpj_valido(cnpj: str) -> bool:
+def cnpj_validate(cnpj: str) -> bool:
     """Validates the Brazilian CNPJ
 
     Args:
