@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from apps.core.models import Client
+from apps.core.models import Client, Order
 from apps.users.models import User
 
 
@@ -65,6 +65,25 @@ class CoreMixing:
             desconto=desconto,
             data_aniversario=data_aniversario,
             username=username
+        )
+
+    def make_order(self,
+                   username=None,
+                   data_pedido='2020-01-01',
+                   client=None,
+                   status='Aberto',
+                   dentista='Dentista',
+                   instituicao='Instituição',
+                   observacao='Observação',
+                   ):
+        return Order.objects.create(
+            username=username,
+            data_pedido=data_pedido,
+            client=client,
+            status=status,
+            dentista=dentista,
+            instituicao=instituicao,
+            observacao=observacao,
         )
 
 
