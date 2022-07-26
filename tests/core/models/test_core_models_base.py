@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from apps.core.models import Client, Order
+from apps.core.models import Client, Material, Order
 from apps.users.models import User
 
 
@@ -84,6 +84,33 @@ class CoreMixing:
             dentista=dentista,
             instituicao=instituicao,
             observacao=observacao,
+        )
+
+    def make_material(self,
+                      codigo='123456',
+                      status='Ativo',
+                      descricao='Descrição',
+                      tamanho='Tamanho',
+                      marca='Marca',
+                      modelo='Modelo',
+                      plataforma='Plataforma',
+                      local='Local',
+                      custo=0.0,
+                      valor_unitario=0.0,
+                      username=None
+                      ):
+        return Material.objects.create(
+            codigo=codigo,
+            status=status,
+            descricao=descricao,
+            tamanho=tamanho,
+            marca=marca,
+            modelo=modelo,
+            plataforma=plataforma,
+            local=local,
+            custo=custo,
+            valor_unitario=valor_unitario,
+            username=username
         )
 
 
