@@ -2,4 +2,5 @@
 from .client import *
 from .material import *
 from .order import *
-from .sales import *
+from .sale import *
+from .stock import *
