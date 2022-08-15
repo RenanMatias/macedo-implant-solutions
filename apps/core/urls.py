@@ -6,5 +6,5 @@ from .views.profile import ProfileView
 app_name = 'core'
 urlpatterns = [
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
-    path('profile/', ProfileView.as_view(), name='profile'),
+    path('profile/<int:pk>/', ProfileView.as_view(), name='profile'),
 ]

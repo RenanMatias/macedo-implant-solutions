@@ -1,95 +1,79 @@
 {% extends 'global/base.html' %}
 {% load static %}
 
-{% block title%}Profile{%endblock title %} {% block content %}
-<div class="flex bg-gray-50">
-    <nav class="flex">
-        <div class="hidden h-auto w-2 bg-gray-700" id="nav-close"></div>
-        <div
-            class="hidden sm:flex w-[220px] min-w-[220px] flex-col bg-gray-700 text-white"
-            id="nav-open"
-        >
-            <div class="fixed w-[220px]">
-                <ul class="flex flex-col gap-5 text-sm font-light">
-                    <li class="flex justify-center items-center h-20">
-                        <img
-                            class="object-contain w-40"
-                            src="{% static 'global/img/logo-white.png' %}"
-                            alt=""
-                        />
-                    </li>
-                    <a href="{% url 'core:dashboard' %}">
-                        <li class="flex items-center mx-5 gap-3 text-gray-400 hover:text-gray-300 transition">
-                            <i class="bi bi-speedometer2 text-xl"> </i>
-                            <span>Dashboard</span>
-                        </li>
-                    </a>
-                    <a href="#">
-                        <li
-                            class="flex items-center mx-5 gap-3 text-gray-400 hover:text-gray-300 transition"
-                        >
-                            <i class="bi bi-plus-circle text-xl"></i>
-                            <span>Cadastro</span>
-                        </li>
-                    </a>
-                    <li>
-                        <ul class="flex flex-col gap-3 ml-14">
-                            <a href="#">
-                                <li
-                                    class="text-gray-400 hover:text-gray-300 transition"
-                                >
-                                    Pedido
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li
-                                    class="text-gray-400 hover:text-gray-300 transition"
-                                >
-                                    Cliente
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li
-                                    class="text-gray-400 hover:text-gray-300 transition"
-                                >
-                                    Material
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li
-                                    class="text-gray-400 hover:text-gray-300 transition"
-                                >
-                                    Usuário
-                                </li>
-                            </a>
-                        </ul>
-                    </li>
-                    <a href="#">
-                        <li
-                            class="flex items-center mx-5 gap-3 text-gray-400 hover:text-gray-300 transition"
-                        >
-                            <i class="bi bi-search text-xl"></i>
-                            <span>Consulta</span>
-                        </li>
-                    </a>
-                </ul>
-            </div>
-        </div>
-    </nav>
+{% block title%}Minha Conta{%endblock title %}
+{% block content %}
+  <div class="flex bg-gray-50">
+    {% include 'core/partials/menu/profile.html' %}
     <div class="flex min-h-screen w-full flex-col">
-        {% include 'core/partials/header.html' %}
-        <h1 class="p-3 text-2xl font-medium text-stone-700">Profile</h1>
-        <div class="flex flex-grow">
-          <main class="grid w-full gap-4 px-3 md:grid-cols-3">
-            <div class="flex flex-col items-center justify-center rounded-md bg-white p-5 md:justify-start">
-              <img src="https://coderthemes.com/hyper/saas/assets/images/users/avatar-1.jpg" class="rounded-full p-1 shadow-xl" alt="" />
-              <div class="pt-2">Dominic Keller</div>
-              <div>Founder</div>
+      {% include 'core/partials/header.html' %}
+      <h1 class="p-3 text-2xl font-medium text-stone-700">Minha Conta</h1>
+      <div class="flex flex-grow">
+        <main class="grid w-full gap-4 px-3 md:grid-cols-3">
+          <div
+            class="flex flex-col items-center justify-center rounded-md bg-white p-5 md:justify-start"
+          >
+            <img
+              src="{{ user.picture.url }}"
+              class="rounded-full p-1 shadow-xl w-52 h-52"
+              alt=""
+            />
+            <div class="pt-2">{{ user.get_full_name }}</div>
+            <div>Perfil</div>
+          </div>
+          <div class="rounded-md bg-white p-5 md:col-span-2">
+            <div class="flex flex-col gap-3">
+              <div
+                class="flex h-11 items-center justify-center rounded-md bg-indigo-500 text-white"
+              >
+                Informações Pessoas
+              </div>
+              <!-- Flash Message -->
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="mt-3 {{ message.tags }}">
+                    <i class="bi bi-check-lg"></i> {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+              <form action="{{ form.action }}" class="form-content md:grid grid-cols-2 gap-3" method="POST">
+                {% csrf_token %}
+                <div class="col-span-2">
+                  <!-- Picture -->
+                  <label for="{{ form.picture.id_for_label }}">{{ form.picture.label }}</label>
+                  {{ form.picture }}
+                </div>
+                <div>
+                  <!-- First Name -->
+                  <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                  {{ form.first_name }}
+                </div>
+                <div>  
+                  <!-- Last Name -->
+                  <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+                  {{ form.last_name }}
+                </div>
+                <div class="col-span-2">
+                  <!-- E-mail -->
+                  <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                  {{ form.email }}
+                </div>
+                <div class="flex justify-end">
+                  <button type="submit" class="w-60 h-14 mt-3 rounded-md bg-indigo-600 hover:bg-indigo-800 text-sm font-medium leading-10 text-white shadow-lg shadow-indigo-500/50">
+                    <span class="bi bi-check2 text-2xl inline-block align-middle mr-1"></span> Atualizar Dados
+                  </button>
+                </div>
+                {% comment %} <div>
+                  <button type="submit" class="w-60 h-14 mt-3 rounded-md bg-indigo-600 hover:bg-indigo-800 text-sm font-medium leading-10 text-white shadow-lg shadow-indigo-500/50">
+                    <span class="bi bi-shield-lock text-2xl inline-block align-middle mr-1"></span> Alterar Senha
+                  </button>
+                </div> {% endcomment %}
+              </form>
             </div>
-            <div class="rounded-md bg-white p-5 md:col-span-2">Profile</div>
-          </main>
-        </div>
-        {% include 'core/partials/footer.html' %}
+          </div>
+        </main>
       </div>
-</div>
+      {% include 'core/partials/footer.html' %}
+    </div>
+  </div>
 {% include 'core/partials/scripts.html' %} {% endblock content %}

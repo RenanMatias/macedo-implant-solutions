@@ -4,8 +4,15 @@ from .models import User
 
 
 class UserChangeForm(forms.UserChangeForm):
-    class Meta(forms.UserChangeForm.Meta):
+    class Meta:
         model = User
+        fields = [
+            'picture',
+            'first_name',
+            'last_name',
+            'email',
+            'password',
+        ]
 
 
 class UserCreationForm(forms.UserCreationForm):
