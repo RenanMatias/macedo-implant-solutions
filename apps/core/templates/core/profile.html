@@ -13,11 +13,18 @@
           <div
             class="flex flex-col items-center justify-center rounded-md bg-white p-5 md:justify-start"
           >
-            <img
-              src="{{ user.picture.url }}"
-              class="rounded-full p-1 shadow-xl w-52 h-52"
-              alt=""
-            />
+            {% if user.picture %}
+              <img class="rounded-full p-1 shadow-xl w-52 h-52" src="{{ user.picture.url }}" />
+            {% else %}
+              <div class="
+                          rounded-full
+                          p-1
+                          shadow-xl
+                          w-52 h-52 bg-indigo-500 text-white 
+                          flex justify-center items-center text-7xl">
+                  {{ user.first_letter_first_name }}{{ user.first_letter_last_name }}
+              </div>
+            {% endif %}
             <div class="pt-2">{{ user.get_full_name }}</div>
             <div>Perfil</div>
           </div>
@@ -36,39 +43,7 @@
                   </div>
                 {% endfor %}
               {% endif %}
-              <form action="{{ form.action }}" class="form-content md:grid grid-cols-2 gap-3" method="POST">
-                {% csrf_token %}
-                <div class="col-span-2">
-                  <!-- Picture -->
-                  <label for="{{ form.picture.id_for_label }}">{{ form.picture.label }}</label>
-                  {{ form.picture }}
-                </div>
-                <div>
-                  <!-- First Name -->
-                  <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
-                  {{ form.first_name }}
-                </div>
-                <div>  
-                  <!-- Last Name -->
-                  <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
-                  {{ form.last_name }}
-                </div>
-                <div class="col-span-2">
-                  <!-- E-mail -->
-                  <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
-                  {{ form.email }}
-                </div>
-                <div class="flex justify-end">
-                  <button type="submit" class="w-60 h-14 mt-3 rounded-md bg-indigo-600 hover:bg-indigo-800 text-sm font-medium leading-10 text-white shadow-lg shadow-indigo-500/50">
-                    <span class="bi bi-check2 text-2xl inline-block align-middle mr-1"></span> Atualizar Dados
-                  </button>
-                </div>
-                {% comment %} <div>
-                  <button type="submit" class="w-60 h-14 mt-3 rounded-md bg-indigo-600 hover:bg-indigo-800 text-sm font-medium leading-10 text-white shadow-lg shadow-indigo-500/50">
-                    <span class="bi bi-shield-lock text-2xl inline-block align-middle mr-1"></span> Alterar Senha
-                  </button>
-                </div> {% endcomment %}
-              </form>
+              {% include 'global/partials/form.html' %}
             </div>
           </div>
         </main>

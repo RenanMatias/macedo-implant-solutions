@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.messages import error, success
+from django.contrib.messages import success
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -21,11 +21,21 @@ class ProfileView(UpdateView):
     template_name = 'core/profile.html'
     model = User
 
-    def form_valid(self, form):
-        success(self.request, 'Dados atualizados com sucesso.')
-        form.save()
-        return redirect(reverse('core:profile', args=[self.object.pk]))
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(*args, **kwargs)
 
-    def form_invalid(self, form):
-        error(self.request, 'Erro ao atualizar dados.')
-        return super().form_invalid(form)
+        ctx.update({
+            'button_title': 'Atualizar Dados',
+        })
+
+        return ctx
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+
+        user.user = self.request.user
+
+        user.save()
+
+        success(self.request, 'Dados atualizados com sucesso.')
+        return redirect(reverse('core:profile', args=[self.object.pk]))
