@@ -15,13 +15,19 @@ class UserChangeForm(forms.UserChangeForm):
 
     class Meta:
         model = User
-        fields = 'picture', 'first_name', 'last_name', 'email'
+        fields = ['picture', 'first_name', 'last_name', 'email']
         widgets = {
             'picture': django_forms.FileInput(
                 attrs={
                     'class': 'col-span-2'
                 }
             )
+        }
+        labels = {
+            'picture': 'Foto',
+            'first_name': 'Nome',
+            'last_name': 'Sobrenome',
+            'email': 'E-mail',
         }
 
 
