@@ -1,4 +1,4 @@
-<form action="{{ form_action }}" class="form-content" method="POST" enctype="multipart/form-data">
+<form id="{{ form_id }}" action="{{ form_action }}" class="form-content" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
 
   {% if form.errors %}
@@ -15,16 +15,12 @@
     {% for field in form %}
       <div class="{{ field.field.widget.attrs.class }}">
         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }} {% if field.help_text %}
-        <p>{{ field.help_text }}</p>
-        {% endif %} {{ field.errors }}
+        {{ field }}
+        {% if field.help_text %}
+          <p>{{ field.help_text }}</p>
+        {% endif %}
+        {{ field.errors }}
       </div>
     {% endfor %}
-
-  </div>
-  <div class="flex justify-center">
-    <button type="submit" class="w-60 h-14 mt-3 rounded-md bg-indigo-600 hover:bg-indigo-800 text-sm font-medium leading-10 text-white shadow-lg shadow-indigo-500/50">
-      <span class="{{ button_icon }} text-2xl inline-block align-middle mr-1"></span> {{ button_title }}
-    </button>
   </div>
 </form>

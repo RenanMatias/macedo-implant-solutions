@@ -27,6 +27,7 @@ class ProfileView(UpdateView):
         ctx.update({
             'button_title': 'Atualizar Dados',
             'button_icon': 'bi bi-check2',
+            'form_id': 'profile-form',
         })
 
         return ctx
@@ -37,7 +38,6 @@ class ProfileView(UpdateView):
         user.user = self.request.user
 
         user.save()
-        update_session_auth_hash
 
         success(self.request, 'Dados atualizados com sucesso.')
         return redirect(reverse('core:profile', args=[self.object.pk]))
