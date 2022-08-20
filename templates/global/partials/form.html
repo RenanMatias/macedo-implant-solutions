@@ -8,7 +8,7 @@
           Há erro no preenchimento do formulário, por favor verifique os campos
           e tente novamente.
         </div>
-      </div>
+      </div> 
     </div>
   {% endif %}
   <div class="md:grid grid-cols-2 gap-3">
@@ -24,7 +24,7 @@
   </div>
   <div class="flex justify-center">
     <button type="submit" class="w-60 h-14 mt-3 rounded-md bg-indigo-600 hover:bg-indigo-800 text-sm font-medium leading-10 text-white shadow-lg shadow-indigo-500/50">
-      <span class="bi bi-check2 text-2xl inline-block align-middle mr-1"></span> {{ button_title }}
+      <span class="{{ button_icon }} text-2xl inline-block align-middle mr-1"></span> {{ button_title }}
     </button>
   </div>
 </form>
