@@ -26,6 +26,9 @@ class User(AbstractUser):
         blank=True,
         default=''
     )
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+    email = models.EmailField()
 
     def first_letter_first_name(self):
         if self.first_name == '':

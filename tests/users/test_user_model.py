@@ -43,6 +43,8 @@ class UserModelTest(TestCase):
 
     def test_first_letter_user_first_name_with_first_name(self):
         self.user.first_name = 'John'
+        self.user.last_name = 'Doe'
+        self.user.email = 'john.doe@email.com'
         self.user.full_clean()
         self.user.save()
         self.assertEqual(self.user.first_letter_first_name(), 'J')
@@ -51,7 +53,9 @@ class UserModelTest(TestCase):
         self.assertEqual(self.user.first_letter_last_name(), None)
 
     def test_first_letter_user_first_name_with_last_name(self):
+        self.user.first_name = 'John'
         self.user.last_name = 'Doe'
+        self.user.email = 'john.doe@email.com'
         self.user.full_clean()
         self.user.save()
         self.assertEqual(self.user.first_letter_last_name(), 'D')

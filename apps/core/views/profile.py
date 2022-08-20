@@ -36,6 +36,9 @@ class ProfileView(UpdateView):
         user = form.save(commit=False)
 
         user.user = self.request.user
+        user.first_name = user.first_name.capitalize()
+        user.last_name = user.last_name.capitalize()
+        user.email = user.email.lower()
 
         user.save()
 

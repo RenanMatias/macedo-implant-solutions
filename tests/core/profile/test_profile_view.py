@@ -23,22 +23,22 @@ def login_user(self):
 class ProfileViewTest(TestCase):
 
     def test_profile_view_function_is_correct(self):
-        view = resolve(reverse('core:profile'))
+        view = resolve(reverse('core:profile', kwargs={'pk': 1}))
         self.assertIs(view.func.view_class, ProfileView)
 
     def test_profile_view_loads_status_302_FOUND_when_user_not_logged_in(self):
         create_user()
-        response = self.client.get(reverse('core:profile'))
+        response = self.client.get(reverse('core:profile', kwargs={'pk': 1}))
         self.assertEqual(response.status_code, 302)
 
     def test_profile_view_loads_status_code_200_OK_when_user_logged_in(self):
         create_user()
         login_user(self)
-        response = self.client.get(reverse('core:profile'))
+        response = self.client.get(reverse('core:profile', kwargs={'pk': 1}))
         self.assertEqual(response.status_code, 200)
 
     def test_profile_view_loads_correct_template(self):
         create_user()
         login_user(self)
-        response = self.client.get(reverse('core:profile'))
+        response = self.client.get(reverse('core:profile', kwargs={'pk': 1}))
         self.assertTemplateUsed(response, 'core/profile.html')
