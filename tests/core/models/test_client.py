@@ -1,13 +1,19 @@
 from django.core.exceptions import ValidationError
 from parameterized import parameterized
 
-from tests.core.models.test_core_models_base import CoreTestBase
+from tests.core.models.test_core_base import CoreTestBase
 from utils.cpf_cnpj_validation import cnpj_validate, cpf_validate
 
 
 class ClientModelTest(CoreTestBase):
     def setUp(self) -> None:
         return super().setUp()
+
+    def test_client_str_is_equal_to_name(self):
+        client = self.make_client(
+            username=self.make_user()
+        )
+        self.assertEqual(str(client), client.nome)
 
     @parameterized.expand([
         ('nome', 255),

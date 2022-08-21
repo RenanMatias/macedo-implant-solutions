@@ -26,9 +26,25 @@ class User(AbstractUser):
         blank=True,
         default=''
     )
-    first_name = models.CharField(max_length=150)
-    last_name = models.CharField(max_length=150)
-    email = models.EmailField()
+    first_name = models.CharField(
+        max_length=50,
+        error_messages={
+            'required': 'Informe seu nome',
+            'max_length': 'O nome deve ter menos de 50 caracteres.',
+        }
+    )
+    last_name = models.CharField(
+        max_length=50,
+        error_messages={
+            'required': 'Informe seu sobrenome',
+            'max_length': 'O sobrenome deve ter menos de 50 caracteres.',
+        }
+    )
+    email = models.EmailField(
+        error_messages={
+            'required': 'O e-mail é obrigatório'
+        }
+    )
 
     def first_letter_first_name(self):
         if self.first_name == '':

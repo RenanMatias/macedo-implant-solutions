@@ -1,10 +1,16 @@
 from django.core.exceptions import ValidationError
 from parameterized import parameterized
 
-from tests.core.models.test_core_models_base import CoreTestBase
+from tests.core.models.test_core_base import CoreTestBase
 
 
 class MaterialModelTest(CoreTestBase):
+
+    def test_material_str_is_equal_to_name(self):
+        material = self.make_material(
+            username=self.make_user()
+        )
+        self.assertEqual(str(material), material.codigo)
 
     @parameterized.expand([
         ('codigo', 255),

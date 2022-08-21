@@ -33,14 +33,21 @@ class ProfileView(UpdateView):
         return ctx
 
     def form_valid(self, form):
-        user = form.save(commit=False)
 
-        user.user = self.request.user
-        user.first_name = user.first_name.capitalize()
-        user.last_name = user.last_name.capitalize()
-        user.email = user.email.lower()
-
-        user.save()
+        form.save()
 
         success(self.request, 'Dados atualizados com sucesso.')
         return redirect(reverse('core:profile', args=[self.object.pk]))
+
+
+@method_decorator(
+    login_required(
+        login_url='login',
+        redirect_field_name='next'
+    ),
+    name='dispatch'
+)
+class ProfileChangePasswordView(UpdateView):
+    form_class = UserChangeForm
+    template_name = 'core/profile_change_pass.html'
+    model = User

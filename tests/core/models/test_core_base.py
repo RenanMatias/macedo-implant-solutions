@@ -1,6 +1,7 @@
 from django.test import TestCase
 
-from apps.core.models import Client, Material, Order
+from apps.core.models import (Bank, Billing, Client, Material, Order, Payment,
+                              Sale, Stock)
 from apps.users.models import User
 
 
@@ -111,6 +112,70 @@ class CoreMixing:
             custo=custo,
             valor_unitario=valor_unitario,
             username=username
+        )
+
+    def make_bank(self, codigo='1', nome='Banco Teste', agencia='1', conta='1'):
+        return Bank.objects.create(
+            codigo=codigo,
+            nome=nome,
+            agencia=agencia,
+            conta=conta,
+        )
+
+    def make_stock(self,
+                   material=None,
+                   lote='1',
+                   quantidade=0,
+                   ):
+        return Stock.objects.create(
+            material=material,
+            lote=lote,
+            quantidade=quantidade
+        )
+
+    def make_sale(self,
+                  order=None,
+                  material=None,
+                  ):
+        return Sale.objects.create(
+            order=order,
+            material=material,
+        )
+
+    def make_billing(self,
+                     venda=None,
+                     total_parcela='1',
+                     desconto=1.0,
+                     tipo_frete='frete',
+                     valor_frete=1.0,
+                     valor_total=1.0,
+                     ):
+        return Billing.objects.create(
+            venda=venda,
+            total_parcela=total_parcela,
+            desconto=desconto,
+            tipo_frete=tipo_frete,
+            valor_frete=valor_frete,
+            valor_total=valor_total,
+        )
+
+    def make_payment(self,
+                     faturamento=None,
+                     forma_pagamento='Dinheiro',
+                     observacao='Observação',
+                     parcela='1',
+                     data_vencimento='2020-01-01',
+                     data_pagamento='2020-01-01',
+                     valor=1.0,
+                     ):
+        return Payment.objects.create(
+            faturamento=faturamento,
+            forma_pagamento=forma_pagamento,
+            observacao=observacao,
+            parcela=parcela,
+            data_vencimento=data_vencimento,
+            data_pagamento=data_pagamento,
+            valor=valor,
         )
 
 
