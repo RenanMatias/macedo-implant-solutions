@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages import success
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import UpdateView
 
-from apps.users.forms import UserChangeForm
+from apps.users.forms import UserChangeForm, UserChangePasswordForm
 from apps.users.models import User
 
 
@@ -47,7 +48,18 @@ class ProfileView(UpdateView):
     ),
     name='dispatch'
 )
-class ProfileChangePasswordView(UpdateView):
-    form_class = UserChangeForm
+class ProfileChangePasswordView(PasswordChangeView):
+    form_class = UserChangePasswordForm
     template_name = 'core/profile_change_pass.html'
-    model = User
+    # model = User
+    success_url = reverse_lazy('core:password')
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(*args, **kwargs)
+
+        ctx.update({
+            'button_title': 'Alterar Senha',
+            'button_icon': 'bi bi-check2',
+        })
+
+        return ctx

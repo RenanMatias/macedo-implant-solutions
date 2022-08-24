@@ -1,7 +1,7 @@
 {% extends 'global/base.html' %}
 {% load static %}
 
-{% block title%}Minha Conta{%endblock title %}
+{% block title%}Alteração de Senha{%endblock title %}
 {% block content %}
   <div class="flex bg-gray-50">
     {% include 'core/partials/menu/profile.html' %}
@@ -41,20 +41,34 @@
                   </div>
                 {% endfor %}
               {% endif %}
-              <form id="{{ form_id }}" action="{{ form_action }}" class="form-content" method="POST" enctype="multipart/form-data">
+              <form id="{{ form_id }}" action="" class="form-content" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                {% if form.errors %}
-                  <div class="form-content form-content-grid">
-                    <div class="form-group">
-                      <div class="message message-error">
-                        Há erro no preenchimento do formulário, por favor verifique os campos
-                        e tente novamente.
-                      </div>
-                    </div> 
+                {% for field in form %}
+                  <div>
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                      <small class="text-red-500">{{ field.help_text }}</small>
+                    {% endif %}
+                    <small class="text-red-500">{{ field.errors }}</small>
                   </div>
-                {% endif %}
-                
+                {% endfor %}
+                <div class="flex justify-center space-x-10">
+                  <button type="submit" class="w-60 h-14 mt-3 rounded-md bg-indigo-600
+                                                                  hover:bg-indigo-800 text-sm font-medium leading-10
+                                                                  text-white shadow-lg shadow-indigo-500/50">
+                    <span class="{{ button_icon }} text-2xl inline-block align-middle mr-1"></span> {{ button_title }}
+                  </button>
+                </div>
               </form>
+              <br>
+              <h1 class="font-bold">Importante:</h1>
+              <ul class="list-disc">
+                <li>A senha deve conter no mínimo 8 caracteres;</li>
+                <li>Não pode ser parecida com outras informações pessoais;</li>
+                <li>Não pode ser uma senha comumente usada;</li>
+                <li>Não pode ser totalmente numérica.</li>
+              </ul>
             </div>
           </div>
         </main>
