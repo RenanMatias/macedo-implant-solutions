@@ -5,8 +5,11 @@
     <h1 class="text-xl font-semibold text-gray-500">Clientes</h1>
     <div class="flex flex-grow flex-col gap-3 rounded bg-white p-5">
       <div class="flex flex-col items-center justify-between gap-3 lg:flex-row">
-        <div class="flex w-96 flex-col gap-2">
-          <input type="text" name="search" id="search" placeholder="Buscar" class="rounded border border-gray-500 px-3 py-2" />
+        <div class="flex w-96 flex-col relative">
+          <div class="absolute pointer-events-none pl-3 pt-2">
+            <i class="bi bi-search absolute text-slate-400 h-8 w-8"></i>
+          </div>
+          <input type="text" name="search" id="search" placeholder="Buscar" class="rounded border border-gray-500 pl-10 py-2" />
         </div>
         <div class="flex flex-none gap-3">
           <a href="#" class="flex items-center justify-center rounded-md border bg-indigo-600 px-4 py-2 text-gray-300 shadow-sm transition hover:bg-indigo-700">Novo Cliente</a>
