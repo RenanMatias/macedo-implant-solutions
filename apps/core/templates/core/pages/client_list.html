@@ -10,11 +10,11 @@
           <div class="absolute pointer-events-none pl-3 pt-2">
             <i class="bi bi-search absolute text-slate-400 h-8 w-8"></i>
           </div>
-          <input type="text" name="search" id="search" placeholder="Buscar" class="rounded border border-gray-500 pl-10 py-2" />
+          <input type="text" name="search" id="search" placeholder="Buscar Cliente" class="rounded py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
         </div>
         <div class="flex flex-none gap-3">
           <a href="#" class="flex items-center justify-center rounded-md border bg-indigo-600 px-4 py-2 text-gray-300 shadow-sm transition hover:bg-indigo-700">Novo Cliente</a>
-          <a href="#" class="flex items-center justify-center rounded-md border bg-gray-100 px-4 py-2 text-gray-600 shadow-sm transition hover:bg-gray-200">Exportar</a>
+          <a href="#" class="flex items-center justify-center rounded-md border bg-gray-100 px-4 py-2 text-gray-600 shadow-sm transition hover:bg-gray-200">Baixar Excel</a>
         </div>
       </div>
       <table class="table-auto">
@@ -52,7 +52,16 @@
                   {% endif %}
                 </div>
               </td>
-              <td class="w-28">Ação</td>
+              <td class="w-28">
+                <div class="flex justify-center items-center px-7 gap-4">
+                  <a href="#" class="hover:text-indigo-600">
+                    <i class="bi bi-pencil-square"></i>
+                  </a>
+                  <a href="#" class="hover:text-indigo-600">
+                    <i class="bi bi-trash3-fill"></i>
+                  </a>
+                </div>
+              </td>
             </tr>
           {% endfor %}
         </tbody>

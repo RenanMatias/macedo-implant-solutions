@@ -30,25 +30,23 @@
                 <span class="text-sm font-light text-gray-500">Perfil</span>
             </div>
         </a>
-        <ul
-            class="hidden absolute left-auto right-10 z-10 m-0 min-h-[118px] min-w-[218px] gap-3 rounded bg-white p-3 text-gray-500 shadow-md"
-        >
-            <li class="hover:text-black transition">
-                <a href="{% url 'core:profile' user.pk %}" class="flex items-center h-11">
-                    <div class="w-11 h-11 flex justify-center items-center">
-                        <i class="bi bi-person-circle"></i>
-                    </div>
-                    <div>Minha Conta</div>
-                </a>
-            </li>
-            <li class="hover:text-black transition">
-                <a href="{% url 'logout' %}" class="flex items-center h-11">
-                    <div class="w-11 h-11 flex justify-center items-center">
-                        <i class="bi bi-box-arrow-right"></i>
-                    </div>
-                    <div>Logout</div>
-                </a>
-            </li>
+        <ul class="absolute left-auto right-10 z-10 m-0 hidden min-h-[118px] min-w-[218px] gap-3 rounded bg-white p-3 text-gray-500 shadow-md">
+          <li class="transition hover:text-black">
+            <a href="{% url 'core:profile' user.pk %}" class="flex h-11 items-center">
+              <div class="flex h-11 w-11 items-center justify-center">
+                <i class="bi bi-person-circle"></i>
+              </div>
+              <div>Minha Conta</div>
+            </a>
+          </li>
+          <li class="transition hover:text-black">
+            <a href="{% url 'logout' %}" class="flex h-11 items-center">
+              <div class="flex h-11 w-11 items-center justify-center">
+                <i class="bi bi-box-arrow-right"></i>
+              </div>
+              <div>Logout</div>
+            </a>
+          </li>
         </ul>
     </div>
 </header>
