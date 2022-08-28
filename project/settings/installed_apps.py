@@ -12,6 +12,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     # Django REST framework
     'rest_framework',
+    # Easy Mask - https://github.com/dhelbegor/easy-mask
+    'easy_mask',
     # Local apps
     'apps.home',
     'apps.login',
