@@ -19,7 +19,7 @@ from apps.users.models import User
 )
 class ProfileView(UpdateView):
     form_class = UserChangeForm
-    template_name = 'core/profile.html'
+    template_name = 'core/pages/profile_edit.html'
     model = User
 
     def get_context_data(self, *args, **kwargs):
@@ -50,7 +50,7 @@ class ProfileView(UpdateView):
 )
 class ProfileChangePasswordView(PasswordChangeView):
     form_class = UserChangePasswordForm
-    template_name = 'core/profile_change_pass.html'
+    template_name = 'core/pages/profile_change_pass.html'
     # model = User
     success_url = reverse_lazy('core:password')
 

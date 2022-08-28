@@ -43,7 +43,7 @@ class ProfileViewTest(TestCase):
         create_user()
         login_user(self)
         response = self.client.get(reverse('core:profile', kwargs={'pk': 1}))
-        self.assertTemplateUsed(response, 'core/profile.html')
+        self.assertTemplateUsed(response, 'core/pages/profile_edit.html')
 
 
 class UserChangeProfileIntegrationTest(TestCase):
@@ -85,29 +85,34 @@ class UserChangeProfileIntegrationTest(TestCase):
 
 class ProfileChangePasswordViewTest(TestCase):
 
-    def test_profile_change_password_view_function_is_correct(self):
-        view = resolve(reverse('core:profile_change_pass', kwargs={'pk': 1}))
+    def test_password_view_function_is_correct(self):
+        view = resolve(reverse('core:password'))
         self.assertIs(view.func.view_class, ProfileChangePasswordView)
 
-    def test_profile_change_password_view_loads_status_302_FOUND_when_user_not_logged_in(self):
+    def test_password_view_loads_status_302_FOUND_when_user_not_logged_in(self):
         create_user()
         response = self.client.get(
-            reverse('core:profile_change_pass', kwargs={'pk': 1}))
+            reverse('core:password'))
         self.assertEqual(response.status_code, 302)
 
-    def test_profile_change_password_view_loads_status_code_200_OK_when_user_logged_in(self):
+    def test_password_view_loads_status_code_200_OK_when_user_logged_in(self):
         create_user()
         login_user(self)
         response = self.client.get(
-            reverse('core:profile_change_pass', kwargs={'pk': 1}))
+            reverse('core:password')
+        )
         self.assertEqual(response.status_code, 200)
 
-    def test_profile_change_password_view_loads_correct_template(self):
+    def test_password_view_loads_correct_template(self):
         create_user()
         login_user(self)
         response = self.client.get(
-            reverse('core:profile_change_pass', kwargs={'pk': 1}))
-        self.assertTemplateUsed(response, 'core/profile_change_pass.html')
+            reverse('core:password')
+        )
+        self.assertTemplateUsed(
+            response,
+            'core/pages/profile_change_pass.html'
+        )
 
 
 class UserChangePasswordIntegrationTest(TestCase):
@@ -119,7 +124,3 @@ class UserChangePasswordIntegrationTest(TestCase):
             'new_password2': 'new_password'
         }
         return super().setUp(*args, **kwargs)
-
-    def test_fields_cannot_be_empty(self):
-        form = UserChangeForm(data=self.form_data)
-        self.assertTrue(form.is_valid())

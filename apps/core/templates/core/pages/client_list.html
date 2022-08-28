@@ -1,0 +1,58 @@
+{% extends 'core/client.html' %}
+
+{% block clientContent %}
+  <div class="flex flex-grow flex-col gap-3 p-5">
+    <h1 class="text-xl font-semibold text-gray-500">Clientes</h1>
+    <div class="flex flex-grow flex-col gap-3 rounded bg-white p-5">
+      <div class="flex flex-col items-center justify-between gap-3 lg:flex-row">
+        <div class="flex w-96 flex-col gap-2">
+          <input type="text" name="search" id="search" placeholder="Buscar" class="rounded border border-gray-500 px-3 py-2" />
+        </div>
+        <div class="flex flex-none gap-3">
+          <a href="#" class="flex items-center justify-center rounded-md border bg-indigo-600 px-4 py-2 text-gray-300 shadow-sm transition hover:bg-indigo-700">Novo Cliente</a>
+          <a href="#" class="flex items-center justify-center rounded-md border bg-gray-100 px-4 py-2 text-gray-600 shadow-sm transition hover:bg-gray-200">Exportar</a>
+        </div>
+      </div>
+      <table class="table-auto">
+        <thead class="bg-indigo-100 h-10 text-slate-800">
+          <tr>
+            <th>ID</th>
+            <th class="text-left">Cliente</th>
+            <th class="text-left">Tipo</th>
+            <th class="text-left">CPF/CNPJ</th>
+            <th>Status</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody class="text-slate-800">
+          {% for client in object_list %}
+            <tr class="h-10 hover:bg-indigo-100">
+              <td class="text-center w-14">{{ client.pk }}</td>
+              <td class="font-medium">{{ client.nome }}</td>
+              <td class="w-28">{{ client.tipo }}</td>
+              {% if client.cpf %}
+                <td class="w-44">{{ client.cpf }}</td>
+              {% else %}
+                <td class="w-44">{{ client.cnpj }}</td>
+              {% endif %}
+              <td class="w-28">
+                <div class="flex justify-center items-center h-10">
+                  {% if client.status == 'Ativo' %}
+                    <div class="flex px-3 bg-emerald-100 text-emerald-600 rounded">
+                      {{ client.status }}
+                    </div>
+                  {% else %}
+                    <div class="flex px-3 bg-rose-100 text-rose-600 rounded">
+                      {{ client.status }}
+                    </div>
+                  {% endif %}
+                </div>
+              </td>
+              <td class="w-28">Ação</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
