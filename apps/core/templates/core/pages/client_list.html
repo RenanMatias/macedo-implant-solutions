@@ -21,8 +21,8 @@
         <thead class="bg-indigo-100 h-10 text-slate-800">
           <tr>
             <th>ID</th>
-            <th class="text-left">Cliente</th>
             <th class="text-left">Tipo</th>
+            <th class="text-left">Cliente</th>
             <th class="text-left">CPF/CNPJ</th>
             <th>Status</th>
             <th>Ação</th>
@@ -32,8 +32,12 @@
           {% for client in object_list|dictsort:'nome' %}
             <tr class="h-10 hover:bg-indigo-100">
               <td class="text-center w-14">{{ client.pk }}</td>
-              <td class="font-medium">{{ client.nome }}</td>
               <td class="w-28">{{ client.tipo }}</td>
+              <td class="font-medium">
+                <a href="#" class="hover:text-indigo-600">
+                  {{ client.nome }}
+                </a>
+              </td>
               {% if client.cpf %}
                 <td class="w-44">{{ client.cpf|cpf }}</td>
               {% else %}
