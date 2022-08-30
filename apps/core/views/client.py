@@ -17,6 +17,7 @@ class ClientListView(ListView):
     model = Client
     queryset = Client.objects.all
     template_name = 'core/pages/client_list.html'
+    # paginate_by = 50
 
 
 class ClientCreateView(CreateView):

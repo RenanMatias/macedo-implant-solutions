@@ -25,7 +25,7 @@
             <th class="text-left">Cliente</th>
             <th class="text-left">CPF/CNPJ</th>
             <th>Status</th>
-            <th>Ação</th>
+            <th>Edição</th>
           </tr>
         </thead>
         <tbody class="text-slate-800">
@@ -61,9 +61,6 @@
                   <a href="#" class="hover:text-indigo-600">
                     <i class="bi bi-pencil-square"></i>
                   </a>
-                  <a href="#" class="hover:text-indigo-600">
-                    <i class="bi bi-trash3-fill"></i>
-                  </a>
                 </div>
               </td>
             </tr>
@@ -71,5 +68,6 @@
         </tbody>
       </table>
     </div>
+    {% include 'global/partials/pagination.html' %}
   </div>
 {% endblock %}
