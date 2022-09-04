@@ -1,9 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
-from django.urls import reverse
-from django.utils.decorators import method_decorator
+from django.urls import reverse, reverse_lazy
 from django.views.generic.base import View
 from django.views.generic.edit import FormView
 
@@ -65,13 +64,9 @@ class LoginView(FormView):
         return super().form_invalid(form)
 
 
-@method_decorator(
-    login_required(
-        login_url='login',
-    ),
-    name='dispatch'
-)
-class LogoutView(View):
+class LogoutView(LoginRequiredMixin, View):
+    login_url = reverse_lazy('login')
+
     def get(self, request):
         messages.success(request, 'Logout realizado com sucesso.')
         logout(request)

@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import resolve, reverse
 
-from apps.core.views.client import ClientListView
+from apps.core.views.client import ClientCreateView, ClientListView
 from apps.users.models import User
 
 
@@ -40,10 +40,10 @@ class ClientListViewTest(TestCase):
         self.assertTemplateUsed(response, 'core/pages/client_list.html')
 
 
-class ClientCreateView(TestCase):
+class ClientCreateViewTest(TestCase):
     def test_client_create_view_function_is_correct(self):
         view = resolve(reverse('core:client_create'))
-        self.assertIs(view.func.view_class, ClientListView)
+        self.assertIs(view.func.view_class, ClientCreateView)
 
     def test_client_create_view_loads_status_code_200_OK_when_user_logged_in(self):
         User.objects.create_user(

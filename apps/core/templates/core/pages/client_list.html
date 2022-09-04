@@ -17,56 +17,60 @@
           <a href="#" class="flex items-center justify-center rounded-md border bg-gray-100 px-4 py-2 text-gray-600 shadow-sm transition hover:bg-gray-200">Baixar Excel</a>
         </div>
       </div>
-      <table class="table-auto">
-        <thead class="bg-indigo-100 h-10 text-slate-800">
-          <tr>
-            <th>ID</th>
-            <th class="text-left">Tipo</th>
-            <th class="text-left">Cliente</th>
-            <th class="text-left">CPF/CNPJ</th>
-            <th>Status</th>
-            <th>Edição</th>
-          </tr>
-        </thead>
-        <tbody class="text-slate-800">
-          {% for client in object_list|dictsort:'nome' %}
-            <tr class="h-10 hover:bg-indigo-100">
-              <td class="text-center w-14">{{ client.pk }}</td>
-              <td class="w-28">{{ client.tipo }}</td>
-              <td class="font-medium">
-                <a href="#" class="hover:text-indigo-600">
-                  {{ client.nome }}
-                </a>
-              </td>
-              {% if client.cpf %}
-                <td class="w-44">{{ client.cpf|cpf }}</td>
-              {% else %}
-                <td class="w-44">{{ client.cnpj|cnpj }}</td>
-              {% endif %}
-              <td class="w-28">
-                <div class="flex justify-center items-center h-10">
-                  {% if client.status == 'Ativo' %}
-                    <div class="flex px-3 bg-emerald-100 text-emerald-600 rounded">
-                      {{ client.status }}
-                    </div>
-                  {% else %}
-                    <div class="flex px-3 bg-rose-100 text-rose-600 rounded">
-                      {{ client.status }}
-                    </div>
-                  {% endif %}
-                </div>
-              </td>
-              <td class="w-28">
-                <div class="flex justify-center items-center px-7 gap-4">
+        <table class="table-auto border-collapse border border-slate-200">
+          <thead class="bg-indigo-100 h-10 text-slate-800">
+              <tr>
+                <th>ID</th>
+                <th class="text-left">Tipo</th>
+                <th class="text-left">Cliente</th>
+                <th class="text-left">CPF/CNPJ</th>
+                <th>Status</th>
+                <th>Edição</th>
+              </tr>
+          </thead>
+          <tbody class="text-slate-800">
+            {% for client in object_list %}
+              <tr class="h-10 hover:bg-indigo-100 border border-slate-200">
+                <td class="text-center w-14">{{ client.pk }}</td>
+                <td class="w-28">{{ client.tipo }}</td>
+                <td class="font-medium">
                   <a href="#" class="hover:text-indigo-600">
-                    <i class="bi bi-pencil-square"></i>
+                    {{ client.nome }}
                   </a>
-                </div>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+                </td>
+                {% if client.cpf %}
+                  <td class="w-44">{{ client.cpf|cpf }}</td>
+                {% else %}
+                  <td class="w-44">{{ client.cnpj|cnpj }}</td>
+                {% endif %}
+                <td class="w-28">
+                  <div class="flex justify-center items-center h-10">
+                    {% if client.status == 'Ativo' %}
+                      <div class="flex px-3 bg-emerald-100 text-emerald-600 rounded">
+                        {{ client.status }}
+                      </div>
+                    {% else %}
+                      <div class="flex px-3 bg-rose-100 text-rose-600 rounded">
+                        {{ client.status }}
+                      </div>
+                    {% endif %}
+                  </div>
+                </td>
+                <td class="w-28">
+                  <div class="flex justify-center items-center px-7 gap-4">
+                    <a href="#" class="hover:text-indigo-600">
+                      <i class="bi bi-pencil-square"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="6">Nenhum cliente registrado.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
     </div>
     {% include 'global/partials/pagination.html' %}
   </div>
