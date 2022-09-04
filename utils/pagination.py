@@ -1,13 +1,18 @@
 import math
 
-from django.core.paginator import Paginator
 
+def make_pagination_range(page_range: dict, current_page: int, qty_pages=5) -> dict:
+    """Create a pagination from the given amount
 
-def make_pagination_range(
-    page_range,
-    qty_pages,
-    current_page,
-):
+    Args:
+        page_range (dict): Dictionary containing all pages
+        current_page (int): Current Page
+        qty_pages (int, optional): Total pages that are displayed in pagination. Defaults to 5.
+
+    Returns:
+        dict: Returns all the data needed to be applied to the template.
+    """
+
     middle_range = math.ceil(qty_pages / 2)
     start_range = current_page - middle_range
     stop_range = (current_page + middle_range) - 1

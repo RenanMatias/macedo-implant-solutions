@@ -22,7 +22,6 @@ class ClientListView(LoginRequiredMixin, ListView):
 
         pagination_range = make_pagination_range(
             page_range,
-            5,
             current_page
         )
 

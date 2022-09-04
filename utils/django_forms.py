@@ -12,7 +12,7 @@ def add_placeholder(field, placeholder_val):
     add_attr(field, 'placeholder', placeholder_val)
 
 
-def strong_password(password):
+def strong_password(password: str) -> bool:
     regex = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$')
 
     if not regex.match(password):
@@ -23,3 +23,5 @@ def strong_password(password):
             ),
             code='Invalid'
         )
+
+    return True

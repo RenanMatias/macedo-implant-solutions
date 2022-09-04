@@ -1,18 +1,18 @@
+# cspell:skip
+# cspell:ignore-line
+# cspell:ignore-next
+# cspell:ignore
 from random import choice, randint
 
 from faker import Faker  # https://faker.readthedocs.io/en/master/index.html
-
-
-def rand_ratioo():
-    return randint(840, 900), randint(473, 573)
-
 
 fake = Faker('pt_BR')
 tipo = ['Dentista', 'Paciente', 'Instituição']
 status = ['Ativo', 'Inativo']
 
 
-def make_client():
+# cSpell:disable
+def make_client() -> dict:
     uf = fake.estado_sigla()
     return {
         'tipo': choice(tipo),
@@ -36,8 +36,9 @@ def make_client():
         'desconto': 0,
         'data_aniversario': fake.date(end_datetime='-20y')
     }
+# cSpell:enable
 
 
-if __name__ == '__main__':
-    from pprint import pprint
-    pprint(make_client())
+# if __name__ == '__main__':
+#     from pprint import pprint
+#     pprint(make_client())
