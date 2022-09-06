@@ -1,25 +1,28 @@
-# cspell:skip
-# cspell:ignore-line
-# cspell:ignore-next
-# cspell:ignore
 from random import choice, randint
 
 from faker import Faker  # https://faker.readthedocs.io/en/master/index.html
 
 fake = Faker('pt_BR')
-tipo = ['Dentista', 'Paciente', 'Instituição']
-status = ['Ativo', 'Inativo']
+tipo_choice = ['Dentista', 'Paciente', 'Instituição']
+status_choice = ['Ativo', 'Inativo']
 
 
 # cSpell:disable
-def make_client() -> dict:
+def make_client(tipo=None, status=None, nome=None, cpf=None, cnpj=None) -> dict:
+
+    tipo1 = choice(tipo_choice) if tipo is None else tipo
+    status1 = choice(status_choice) if status is None else status
+    nome1 = fake.name() if nome is None else nome
+    cpf1 = fake.ssn() if cpf is None else cpf
+    cnpj1 = fake.company_id() if cnpj is None else cnpj
+
     uf = fake.estado_sigla()
     return {
-        'tipo': choice(tipo),
-        'status': choice(status),
-        'nome': fake.name(),
-        'cpf': fake.ssn(),
-        'cnpj': fake.company_id(),
+        'tipo': tipo1,
+        'status': status1,
+        'nome': nome1,
+        'cpf': cpf1,
+        'cnpj': cnpj1,
         'endereco': f'{fake.street_prefix()} {fake.street_name()}',
         'numero': fake.building_number(),
         'complemento': '-',
