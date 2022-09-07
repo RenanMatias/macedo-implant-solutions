@@ -21,8 +21,8 @@ class ClientListViewBase(LoginRequiredMixin, ListView):
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
         page_obj, pagination_range = make_pagination(
-            self.request,
-            ctx.get('clients'),
+            request=self.request,
+            queryset=self.model.objects.all(),
             per_page=self.paginate_by
         )
 
@@ -47,10 +47,10 @@ class ClientListViewSearch(ClientListViewBase):
             raise Http404()
 
         qs = qs.filter(
-            Q(status__iexact=search_term) |
-            Q(tipo__icontains=search_term) |
-            Q(nome__icontains=search_term) |
-            Q(cpf__icontains=search_term) |
+            Q(status__iexact=search_term) | # noqa: W504 E261
+            Q(tipo__icontains=search_term) | # noqa: W504 E261
+            Q(nome__icontains=search_term) | # noqa: W504 E261
+            Q(cpf__icontains=search_term) | # noqa: W504 E261
             Q(cnpj__icontains=search_term),
         )
 
