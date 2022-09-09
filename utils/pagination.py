@@ -35,7 +35,9 @@ def make_pagination_range(page_range: dict, current_page: int, qty_pages=5) -> d
         'pagination': pagination,
         'page_range': page_range,
         'qty_pages': qty_pages,
+        'previous_page': current_page - 1,
         'current_page': current_page,
+        'next_page': current_page + 1,
         'total_pages': total_pages,
         'start_range': start_range,
         'stop_range': stop_range,
@@ -54,9 +56,9 @@ def make_pagination(request, queryset, per_page, qty_pages=5):
     page_obj = paginator.get_page(current_page)
 
     pagination_range = make_pagination_range(
-        paginator.page_range,
-        current_page,
-        qty_pages,
+        page_range=paginator.page_range,
+        current_page=current_page,
+        qty_pages=qty_pages,
     )
 
     return page_obj, pagination_range

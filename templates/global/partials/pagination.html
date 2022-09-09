@@ -1,17 +1,17 @@
 {% if clients.has_other_pages %}
   <nav role="navigation" aria-label="pagination" class="h-12 flex items-center px-5 py-1 bg-white rounded">
-    {% if page_obj.number > 1 %}
-      <a href="?page={{ page_obj.previous_page_number }}{{ additional_url_query }}" class="flex h-10 w-8 items-center justify-center rounded-l border border-gray-200 px-3 text-lg font-light hover:bg-gray-200">«</a>
+    {% if pagination_range.current_page > 1 %}
+      <a href="?page={{ pagination_range.previous_page }}{{ additional_url_query }}" class="flex h-10 w-8 items-center justify-center rounded-l border border-gray-200 px-3 text-lg font-light hover:bg-gray-200">«</a>
     {% endif %}
     {% for page in pagination_range.pagination %}
-      {% if page == page_obj.number %}
+      {% if page == pagination_range.current_page %}
         <a href="?page={{ page }}{{ additional_url_query }}" class="flex h-10 w-8 items-center justify-center px-3 text-lg font-light bg-indigo-600 text-white hover:bg-indigo-500">{{ page }}</a>
       {% else %}
         <a href="?page={{ page }}{{ additional_url_query }}" class="flex h-10 w-8 items-center justify-center border border-gray-200 px-3 text-lg font-light hover:bg-gray-200">{{ page }}</a>
       {% endif %}
     {% endfor %}
-    {% if page_obj.number < page_obj.paginator.num_pages %}
-      <a href="?page={{ page_obj.next_page_number }}{{ additional_url_query }}" class="flex h-10 w-8 items-center justify-center rounded-l border border-gray-200 px-3 text-lg font-light hover:bg-gray-200">»</a>
+    {% if pagination_range.current_page < pagination_range.total_pages %}
+      <a href="?page={{ pagination_range.next_page }}{{ additional_url_query }}" class="flex h-10 w-8 items-center justify-center rounded-l border border-gray-200 px-3 text-lg font-light hover:bg-gray-200">»</a>
     {% endif %}
   </nav>
 {% endif %}

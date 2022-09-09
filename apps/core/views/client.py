@@ -15,22 +15,21 @@ class ClientListViewBase(LoginRequiredMixin, ListView):
     model = Client
     context_object_name = 'clients'
     template_name = 'core/pages/client_list.html'
-    paginate_by = 30
     ordering = ['nome']
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
         page_obj, pagination_range = make_pagination(
             request=self.request,
-            queryset=self.model.objects.all(),
-            per_page=self.paginate_by
+            queryset=ctx.get('clients'),
+            per_page=30
         )
 
         ctx.update(
             {
                 'clients': page_obj,
-                'page_title': 'Clientes',
                 'pagination_range': pagination_range,
+                'page_title': 'Clientes',
             }
         )
 
