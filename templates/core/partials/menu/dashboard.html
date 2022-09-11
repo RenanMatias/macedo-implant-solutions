@@ -1,0 +1,50 @@
+{% load static %}
+<nav class="flex">
+  <div class="hidden h-auto w-2 bg-gray-700" id="nav-close"></div>
+  <div
+    class="hidden sm:flex w-[220px] min-w-[220px] flex-col bg-gray-700 text-white"
+    id="nav-open"
+  >
+    <div class="fixed w-[220px]">
+      <ul class="flex flex-col gap-5 text-sm font-light">
+        <li class="flex justify-center items-center h-20">
+          <img
+            class="object-contain w-40"
+            src="{% static 'global/img/logo-white.png' %}"
+            alt=""
+          />
+        </li>
+        <a href="{% url 'core:dashboard' %}">
+          {% if page_view == 'dashboard' %}
+            <li class="flex items-center mx-5 gap-3">
+          {% else %}
+            <li class="flex items-center mx-5 gap-3 text-gray-400 hover:text-gray-300 transition">
+          {% endif %}
+              <i class="bi bi-speedometer2 text-xl"> </i>
+              <span>Dashboard</span>
+          </li>
+        </a>
+        <a href="{% url 'core:client_list' %}">
+          {% if page_view == 'clients' %}
+            <li class="flex items-center mx-5 gap-3">
+          {% else %}
+            <li class="flex items-center mx-5 gap-3 text-gray-400 hover:text-gray-300 transition">
+          {% endif %}
+              <i class="bi bi-people-fill text-xl"></i>
+              <span>Clientes</span>
+          </li>
+        </a>
+        <a href="#">
+          {% if page_view == 'query' %}
+            <li class="flex items-center mx-5 gap-3">
+          {% else %}
+            <li class="flex items-center mx-5 gap-3 text-gray-400 hover:text-gray-300 transition">
+          {% endif %}
+              <i class="bi bi-search text-xl"></i>
+              <span>Consulta</span>
+          </li>
+        </a>
+      </ul>
+    </div>
+  </div>
+</nav>

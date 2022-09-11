@@ -30,6 +30,7 @@ class ClientListViewBase(LoginRequiredMixin, ListView):
                 'clients': page_obj,
                 'pagination_range': pagination_range,
                 'page_title': 'Clientes',
+                'page_view': 'clients'
             }
         )
 
