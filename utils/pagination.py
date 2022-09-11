@@ -3,7 +3,7 @@ import math
 from django.core.paginator import Paginator
 
 
-def make_pagination_range(page_range: dict, current_page: int, qty_pages=5) -> dict:
+def make_pagination_range(page_range: range, current_page: int, qty_pages=5) -> dict:
     """Create a pagination from the given amount
 
     Args:
@@ -15,6 +15,8 @@ def make_pagination_range(page_range: dict, current_page: int, qty_pages=5) -> d
         dict: Returns all the data needed to be applied to the template.
     """
 
+    if len(page_range) < qty_pages:
+        qty_pages = len(page_range)
     middle_range = math.ceil(qty_pages / 2)
     start_range = current_page - middle_range
     stop_range = (current_page + middle_range) - 1
