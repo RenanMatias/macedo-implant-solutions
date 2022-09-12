@@ -15,8 +15,8 @@
           </form>
         </div>
         <div class="flex flex-none gap-3">
-          <a href="#" class="flex items-center justify-center rounded-md border bg-indigo-600 px-4 py-2 text-gray-300 shadow-sm transition hover:bg-indigo-700">Novo Cliente</a>
-          <a href="#" class="flex items-center justify-center rounded-md border bg-gray-100 px-4 py-2 text-gray-600 shadow-sm transition hover:bg-gray-200">Baixar Excel</a>
+          <a href="{% url 'core:client_create' %}" class="flex items-center justify-center rounded-md border bg-indigo-600 px-4 py-2 text-gray-300 shadow-sm transition hover:bg-indigo-700">Novo Cliente</a>
+          <a href="{% url 'core:client_export_excel' %}" class="flex items-center justify-center rounded-md border bg-gray-100 px-4 py-2 text-gray-600 shadow-sm transition hover:bg-gray-200">Baixar Excel</a>
         </div>
       </div>
         <table class="table-auto border-collapse border border-slate-200">

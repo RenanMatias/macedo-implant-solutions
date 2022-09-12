@@ -1,6 +1,7 @@
+import xlwt
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
 
@@ -84,3 +85,80 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
         })
 
         return ctx
+
+
+class ClientExportExcelView(ClientListViewSearch):
+
+    def get(self, request, *args, **kwargs):
+        content_type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        response = HttpResponse(content_type=content_type)
+        response['Content-Disposition'] = 'attachment; filename=relatorio_clientes.xls'  # cspell:disable-line
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('Clientes')
+        row_num = 0
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        columns = [
+            'Tipo',
+            'Status',
+            'Nome',
+            'CPF',
+            'CNPJ',
+            'Endereço',
+            'Número',
+            'Complemento',
+            'Bairro',
+            'Município',
+            'Cidade',
+            'UF',
+            'CEP',
+            'Telefone',
+            'Celular',
+            'CRO-UF',
+            'CRO',
+            'E-mail',
+            'Desconto',
+            'Data de Aniversário',
+        ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        font_style = xlwt.XFStyle()
+
+        # cspell:disable
+        rows = self.model.objects.all().values_list(
+            'tipo',
+            'status',
+            'nome',
+            'cpf',
+            'cnpj',
+            'endereco',
+            'numero',
+            'complemento',
+            'bairro',
+            'municipio',
+            'cidade',
+            'uf',
+            'cep',
+            'telefone',
+            'celular',
+            'cro_uf',
+            'cro',
+            'email',
+            'desconto',
+            'data_aniversario',
+        )
+        # cspell:enable
+
+        for row in rows:
+            row_num += 1
+
+            for col_num in range(len(row)):
+                ws.write(row_num, col_num, str(row[col_num]), font_style)
+
+        wb.save(response)
+
+        return response

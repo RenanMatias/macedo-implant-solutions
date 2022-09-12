@@ -15,3 +15,7 @@ class ClientURLsTest(TestCase):
     def test_client_search_url_is_correct(self):
         url = reverse('core:client_search')
         self.assertEqual(url, '/clients/search/')
+
+    def test_client_export_excel_url_is_correct(self):
+        url = reverse('core:client_export_excel')
+        self.assertEqual(url, '/clients/export_excel/')

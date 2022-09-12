@@ -1,19 +1,7 @@
 from django.urls import resolve, reverse
 
 from apps.core.views.client import ClientListViewBase
-from apps.users.models import User
 from tests.core.client.test_client_base import ClientTestBase
-
-
-def createUserAndLogin(self):
-    User.objects.create_user(
-        username='test_user',
-        password='test_password'
-    )
-    self.client.login(
-        username='test_user',
-        password='test_password'
-    )
 
 
 class ClientListViewTest(ClientTestBase):
@@ -32,6 +20,6 @@ class ClientListViewTest(ClientTestBase):
         self.assertEqual(response.status_code, 302)
 
     def test_client_list_view_loads_correct_template(self):
-        createUserAndLogin(self)
+        self.make_user()
         response = self.client.get(reverse('core:client_list'))
         self.assertTemplateUsed(response, 'core/pages/client_list.html')
