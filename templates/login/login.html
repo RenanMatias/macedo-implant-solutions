@@ -16,13 +16,7 @@
                 <h1 class="text-stone-500 text-2xl font-semibold text-center">Login</h1>
                 <p class="text-stone-400 text-center text-sm">Digite seu nome de usuário e senha para acessar a aplicação.</p>
             </div>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="{{ message.tags }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
+            {% include 'global/partials/messages.html' %}
             <form class="form-content flex flex-col gap-4 w-full" action="{{ form.action }}" method="POST">
                 {% csrf_token %}
                 {% for field in form %}

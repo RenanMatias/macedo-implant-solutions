@@ -1,10 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 .header-a {
     @apply text-base font-medium;
 }
+
+
+/* Forms */
 
 .form-content input {
     @apply w-full rounded bg-gray-50 border-gray-300 font-normal text-base text-stone-700;
@@ -13,6 +15,9 @@
 .form-content textarea {
     @apply w-full rounded bg-gray-50 border-gray-300 font-normal text-base text-stone-700;
 }
+
+
+/* Messages */
 
 .message .message-debug {
     @apply bg-stone-50 w-full p-3 rounded border-l-4 border-solid border-stone-500 text-stone-600 text-sm

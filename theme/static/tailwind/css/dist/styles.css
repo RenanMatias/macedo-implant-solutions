@@ -1658,6 +1658,8 @@ select {
   font-weight: 500;
 }
 
+/* Forms */
+
 .form-content input {
   width: 100%;
   border-radius: 0.25rem;
@@ -1685,6 +1687,8 @@ select {
   --tw-text-opacity: 1;
   color: rgb(68 64 60 / var(--tw-text-opacity));
 }
+
+/* Messages */
 
 .message .message-debug {
   width: 100%;
