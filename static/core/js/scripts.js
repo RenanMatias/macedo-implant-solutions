@@ -19,8 +19,6 @@ $(document).ready(function() {
     $clientCNPJ.mask('00.000.000/0000-00', { reverse: true });
     var $clientCEP = $("#id_cep");
     $clientCEP.mask('00000-000', { reverse: true });
-    var $clientBirthday = $("#id_data_aniversario");
-    $clientBirthday.mask('00/00/0000', { reverse: true });
     var $clientTelefone = $("#id_telefone");
     $clientTelefone.mask('00 0000-0000', { reverse: true });
     var $clientCelular = $("#id_celular");

@@ -36,6 +36,10 @@ UF_CHOICES = (
 )
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
 class ClientForm(forms.ModelForm):
     uf = forms.ChoiceField(
         choices=UF_CHOICES,
@@ -47,7 +51,7 @@ class ClientForm(forms.ModelForm):
         label='CRO-UF',
         required=False
     )
-
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -56,7 +60,6 @@ class ClientForm(forms.ModelForm):
         add_attr(self.fields.get('nome'), 'class', 'col-start-1 col-span-2')
         
         # Placeholder
-        add_placeholder(self.fields.get('data_aniversario'), '01/01/2022')
         add_placeholder(self.fields.get('telefone'), '21 1234-5678')
         add_placeholder(self.fields.get('celular'), '21 12345-6789')
 
@@ -98,6 +101,8 @@ class ClientForm(forms.ModelForm):
             'numero': 'Número',
             'municipio': 'Município',
             'cro': 'Número CRO',
-            'desconto': 'Desconto (%)',
-            'data_aniversario': 'Data de Aniversário'
+            'desconto': 'Desconto (%)'
+        }
+        widgets = {
+            'data_aniversario': DateInput()
         }
