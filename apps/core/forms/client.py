@@ -57,11 +57,15 @@ class ClientForm(forms.ModelForm):
         
         # Placeholder
         add_placeholder(self.fields.get('data_aniversario'), '01/01/2022')
+        add_placeholder(self.fields.get('telefone'), '21 1234-5678')
+        add_placeholder(self.fields.get('celular'), '21 12345-6789')
 
         # Maxlength
         override_attr(self.fields.get('cpf'), 'maxlength', '14')
         override_attr(self.fields.get('cnpj'), 'maxlength', '19')
         override_attr(self.fields.get('cep'), 'maxlength', '9')
+        override_attr(self.fields.get('telefone'), 'maxlength', '12')
+        override_attr(self.fields.get('celular'), 'maxlength', '13')
         
     class Meta:
         model = Client
