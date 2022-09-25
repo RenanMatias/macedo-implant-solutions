@@ -5,6 +5,7 @@ from django.http import Http404, HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
 
+from apps.core.forms.client import ClientForm
 from utils.pagination import make_pagination
 
 from ..models.client import Client
@@ -74,14 +75,28 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
 
     model = Client
-    fields = '__all__'
+    form_class = ClientForm
     template_name = 'core/pages/client_create.html'
     success_url = reverse_lazy('core:client_list')
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
         ctx.update({
-            'page_title': 'Novo Cliente'
+            'page_title': 'Novo Cliente',
+            'qty_col': '4',
+            'form_id': 'client-form',
+            'buttons': [
+                {
+                    'type': "submit",
+                    'title': "Cadastrar Cliente",
+                    'class_icon': "bi bi-person-plus"
+                },
+                {
+                    'type': "reset",
+                    'title': "Limpar Formulário",
+                    'class_icon': "bi bi-eraser"
+                },
+            ]
         })
 
         return ctx

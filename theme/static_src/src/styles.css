@@ -16,6 +16,10 @@
     @apply w-full rounded bg-gray-50 border-gray-300 font-normal text-base text-stone-700;
 }
 
+.form-content select {
+    @apply w-full rounded bg-gray-50 border-gray-300 font-normal text-base text-stone-700;
+}
+
 
 /* Messages */
 

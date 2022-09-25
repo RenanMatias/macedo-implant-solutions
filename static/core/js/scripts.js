@@ -12,6 +12,13 @@ $(document).ready(function() {
             value = "menu"
         }
     })
+
+    var $clientCPF = $("#id_cpf");
+    $clientCPF.mask('000.000.000-00', { reverse: true });
+    var $clientCNPJ = $("#id_cnpj");
+    $clientCNPJ.mask('00.000.000/0000-00', { reverse: true });
+    var $clientCEP = $("#id_cep");
+    $clientCEP.mask('00000-000', { reverse: true });
 });
 $("#dropdown").on("click", function(e) {
     if ($(this).hasClass("open")) {
@@ -21,4 +28,4 @@ $("#dropdown").on("click", function(e) {
         $(this).addClass("open");
         $(this).children("ul").slideDown("fast");
     }
-});
+})
