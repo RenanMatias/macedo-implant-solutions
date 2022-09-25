@@ -19,6 +19,8 @@ $(document).ready(function() {
     $clientCNPJ.mask('00.000.000/0000-00', { reverse: true });
     var $clientCEP = $("#id_cep");
     $clientCEP.mask('00000-000', { reverse: true });
+    var $clientBirthday = $("#id_data_aniversario");
+    $clientBirthday.mask('00/00/0000', { reverse: true });
 });
 $("#dropdown").on("click", function(e) {
     if ($(this).hasClass("open")) {

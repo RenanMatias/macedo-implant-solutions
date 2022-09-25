@@ -1,5 +1,7 @@
 from django import forms
 
+from utils.django_forms import add_attr, add_placeholder, override_attr
+
 from ..models.client import Client
 
 UF_CHOICES = (
@@ -35,34 +37,6 @@ UF_CHOICES = (
 
 
 class ClientForm(forms.ModelForm):
-    cpf = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'maxlength': 14
-            }
-        ),
-        label='CPF',
-        required=False
-    )
-    cnpj = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'maxlength': 19
-            }
-        ),
-        label='CNPJ',
-        required=False
-    )
-    cep = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'maxlength': 9,
-                'class': 'col-start-1 col-end-2'
-            }
-        ),
-        label='CEP',
-        required=False
-    )
     uf = forms.ChoiceField(
         choices=UF_CHOICES,
         label='UF',
@@ -74,6 +48,21 @@ class ClientForm(forms.ModelForm):
         required=False
     )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Class
+        add_attr(self.fields.get('tipo'), 'class', 'col-start-1 col-end-2')
+        add_attr(self.fields.get('nome'), 'class', 'col-start-1 col-span-2')
+        
+        # Placeholder
+        add_placeholder(self.fields.get('data_aniversario'), '01/01/2022')
+
+        # Maxlength
+        override_attr(self.fields.get('cpf'), 'maxlength', '14')
+        override_attr(self.fields.get('cnpj'), 'maxlength', '19')
+        override_attr(self.fields.get('cep'), 'maxlength', '9')
+        
     class Meta:
         model = Client
         fields = [
@@ -81,6 +70,7 @@ class ClientForm(forms.ModelForm):
             'nome',
             'cpf',
             'cnpj',
+            'email',
             'cep',
             'endereco',
             'numero',
@@ -93,27 +83,17 @@ class ClientForm(forms.ModelForm):
             'celular',
             'cro_uf',
             'cro',
-            'email',
             'desconto',
             'data_aniversario'
         ]
         labels = {
+            'cpf': 'CPF',
+            'cnpj': 'CNPJ',
             'endereco': 'Endereço',
+            'cep': 'CEP',
             'numero': 'Número',
             'municipio': 'Município',
             'cro': 'Número CRO',
             'desconto': 'Desconto (%)',
             'data_aniversario': 'Data de Aniversário'
-        }
-        widgets = {
-            'tipo': forms.Select(
-                attrs={
-                    'class': 'col-start-1 col-end-2',
-                }
-            ),
-            'nome': forms.TextInput(
-                attrs={
-                    'class': 'col-start-1 col-span-2',
-                }
-            )
         }

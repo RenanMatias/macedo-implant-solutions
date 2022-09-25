@@ -745,16 +745,8 @@ select {
   grid-column-start: 1;
 }
 
-.col-end-4 {
-  grid-column-end: 4;
-}
-
 .col-end-2 {
   grid-column-end: 2;
-}
-
-.col-end-3 {
-  grid-column-end: 3;
 }
 
 .m-0 {
@@ -1063,18 +1055,6 @@ select {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grid-cols-8 {
-  grid-template-columns: repeat(8, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -1418,14 +1398,6 @@ select {
 
 .pr-10 {
   padding-right: 2.5rem;
-}
-
-.pt-5 {
-  padding-top: 1.25rem;
-}
-
-.pt-10 {
-  padding-top: 2.5rem;
 }
 
 .pt-3 {

@@ -8,6 +8,10 @@ def add_attr(field, attr_name, attr_new_val):
     field.widget.attrs[attr_name] = f'{existing_attr} {attr_new_val}'.strip()
 
 
+def override_attr(field, attr_name, attr_new_val):
+    field.widget.attrs[attr_name] = f'{attr_new_val}'.strip()
+
+
 def add_placeholder(field, placeholder_val):
     add_attr(field, 'placeholder', placeholder_val)
 
