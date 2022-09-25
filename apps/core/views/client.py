@@ -83,7 +83,7 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
         ctx = super().get_context_data(*args, **kwargs)
         ctx.update({
             'page_title': 'Novo Cliente',
-            'qty_col': '4',
+            'form_fields_class': 'md:grid grid-cols-2 lg:grid-cols-4 gap-3',
             'form_id': 'client-form',
             'buttons': [
                 {

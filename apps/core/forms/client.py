@@ -1,6 +1,7 @@
 from django import forms
 
-from utils.django_forms import add_attr, add_placeholder, override_attr
+from utils.django_forms import (add_attr, add_placeholder, disable_field,
+                                override_attr)
 
 from ..models.client import Client
 
@@ -41,11 +42,6 @@ class DateInput(forms.DateInput):
 
 
 class ClientForm(forms.ModelForm):
-    uf = forms.ChoiceField(
-        choices=UF_CHOICES,
-        label='UF',
-        required=False
-    )
     cro_uf = forms.ChoiceField(
         choices=UF_CHOICES,
         label='CRO-UF',
@@ -69,6 +65,14 @@ class ClientForm(forms.ModelForm):
         override_attr(self.fields.get('cep'), 'maxlength', '9')
         override_attr(self.fields.get('telefone'), 'maxlength', '12')
         override_attr(self.fields.get('celular'), 'maxlength', '13')
+
+        # Disabled Fields
+        disable_field([
+            self.fields.get('endereco'),
+            self.fields.get('bairro'),
+            self.fields.get('cidade'),
+            self.fields.get('uf')
+        ])
         
     class Meta:
         model = Client
@@ -101,7 +105,8 @@ class ClientForm(forms.ModelForm):
             'numero': 'Número',
             'municipio': 'Município',
             'cro': 'Número CRO',
-            'desconto': 'Desconto (%)'
+            'desconto': 'Desconto (%)',
+            'uf': 'UF'
         }
         widgets = {
             'data_aniversario': DateInput()

@@ -1,7 +1,7 @@
 <form id="{{ form_id }}" action="{{ form_action }}" class="form-content" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
 
-  <div id="form_fields" class="md:grid grid-cols-2 lg:grid-cols-{{ qty_col }} gap-3">
+  <div id="form_fields" class="{{ form_fields_class }}">
     {% for field in form %}
       <div class="{{ field.field.widget.attrs.class }}">
         <label id="lbl_{{ field.name }}" for="{{ field.id_for_label }}">{{ field.label }}</label>

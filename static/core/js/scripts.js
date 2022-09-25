@@ -24,10 +24,11 @@ $(document).ready(function() {
     var $clientCelular = $("#id_celular");
     $clientCelular.mask('00 00000-0000', { reverse: true });
 
-    $("#id_cnpj").parent("div").addClass("hidden")
-    $("#id_cro").parent("div").addClass("hidden")
-    $("#id_cro_uf").parent("div").addClass("hidden")
+    $("#id_cnpj").parent("div").addClass("hidden");
+    $("#id_cro").parent("div").addClass("hidden");
+    $("#id_cro_uf").parent("div").addClass("hidden");
 });
+
 $("#dropdown").on("click", function(e) {
     if ($(this).hasClass("open")) {
         $(this).removeClass("open");
@@ -37,6 +38,7 @@ $("#dropdown").on("click", function(e) {
         $(this).children("ul").slideDown("fast");
     }
 })
+
 $("#id_tipo").change(function() {
     if (this.value == "Dentista") {
         $("#id_cpf").parent("div").removeClass("hidden");
@@ -54,4 +56,25 @@ $("#id_tipo").change(function() {
         $("#id_cro").parent("div").addClass("hidden");
         $("#id_cro_uf").parent("div").addClass("hidden");
     }
+})
+
+$(":input#id_cep").focusout(function(e) {
+    const cep = this.value
+
+    $.get('https://viacep.com.br/ws/' + cep + '/json', function(data) {
+        if (data.erro != 'true') {
+            $('#id_endereco').val(data.logradouro)
+            $('#id_complemento').val(data.complemento)
+            $('#id_bairro').val(data.bairro)
+            $('#id_cidade').val(data.localidade)
+            $('#id_uf').val(data.uf)
+        } else {
+            $('#id_endereco').val('')
+            $('#id_complemento').val('')
+            $('#id_bairro').val('')
+            $('#id_cidade').val('')
+            $('#id_uf').val('')
+        }
+    })
+
 })
