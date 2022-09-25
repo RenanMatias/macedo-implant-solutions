@@ -23,6 +23,10 @@ $(document).ready(function() {
     $clientTelefone.mask('00 0000-0000', { reverse: true });
     var $clientCelular = $("#id_celular");
     $clientCelular.mask('00 00000-0000', { reverse: true });
+
+    $("#id_cnpj").parent("div").addClass("hidden")
+    $("#id_cro").parent("div").addClass("hidden")
+    $("#id_cro_uf").parent("div").addClass("hidden")
 });
 $("#dropdown").on("click", function(e) {
     if ($(this).hasClass("open")) {
@@ -31,5 +35,23 @@ $("#dropdown").on("click", function(e) {
     } else {
         $(this).addClass("open");
         $(this).children("ul").slideDown("fast");
+    }
+})
+$("#id_tipo").change(function() {
+    if (this.value == "Dentista") {
+        $("#id_cpf").parent("div").removeClass("hidden");
+        $("#id_cnpj").parent("div").removeClass("hidden");
+        $("#id_cro").parent("div").removeClass("hidden");
+        $("#id_cro_uf").parent("div").removeClass("hidden");
+    } else if (this.value == "Paciente") {
+        $("#id_cpf").parent("div").removeClass("hidden");
+        $("#id_cnpj").parent("div").addClass("hidden");
+        $("#id_cro").parent("div").addClass("hidden");
+        $("#id_cro_uf").parent("div").addClass("hidden");
+    } else if (this.value == "Instituição") {
+        $("#id_cpf").parent("div").addClass("hidden");
+        $("#id_cnpj").parent("div").removeClass("hidden");
+        $("#id_cro").parent("div").addClass("hidden");
+        $("#id_cro_uf").parent("div").addClass("hidden");
     }
 })
