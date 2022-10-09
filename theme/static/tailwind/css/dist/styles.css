@@ -1905,6 +1905,13 @@ select {
   color: rgb(68 64 60 / var(--tw-text-opacity));
 }
 
+.errorlist {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 /* Messages */
 
 .message .message-debug {

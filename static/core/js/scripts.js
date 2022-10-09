@@ -24,9 +24,33 @@ $(document).ready(function() {
     var $clientCelular = $("#id_celular");
     $clientCelular.mask('00 00000-0000', { reverse: true });
 
-    $("#id_cnpj").parent("div").addClass("hidden");
-    $("#id_cro").parent("div").addClass("hidden");
-    $("#id_cro_uf").parent("div").addClass("hidden");
+    if (!$("#id_cep")) {
+        $("#id_cep").trigger('focusout')
+    };
+
+    switch ($("#id_tipo").val()) {
+        case 'Paciente':
+            $("#id_cpf").parent("div").removeClass("hidden");
+            $("#id_cnpj").parent("div").addClass("hidden");
+            $("#id_cro").parent("div").addClass("hidden");
+            $("#id_cro_uf").parent("div").addClass("hidden");
+            break
+        case 'Dentista':
+            $("#id_cpf").parent("div").removeClass("hidden");
+            $("#id_cnpj").parent("div").removeClass("hidden");
+            $("#id_cro").parent("div").removeClass("hidden");
+            $("#id_cro_uf").parent("div").removeClass("hidden");
+            break
+        case 'Instituição':
+            $("#id_cpf").parent("div").addClass("hidden");
+            $("#id_cnpj").parent("div").removeClass("hidden");
+            $("#id_cro").parent("div").addClass("hidden");
+            $("#id_cro_uf").parent("div").addClass("hidden");
+            break
+    };
+
+    if ($("#id_tipo").val() == 'Paciente') {}
+
 });
 
 $("#dropdown").on("click", function(e) {
@@ -64,9 +88,11 @@ $(":input#id_cep").focusout(function(e) {
     $.get('https://viacep.com.br/ws/' + cep + '/json', function(data) {
         if (data.erro != 'true') {
             $('#id_endereco').val(data.logradouro)
-            $('#id_complemento').val(data.complemento)
-            $('#id_bairro').val(data.bairro)
-            $('#id_cidade').val(data.localidade)
+                // document.getElementById('id_endereco').value = 'Hello';
+                // $('#id_endereco').attr('value', data.logradouro);
+            $('#id_complemento').val(data.complemento);
+            $('#id_bairro').val(data.bairro);
+            $('#id_cidade').val(data.localidade);
             $('#id_uf').val(data.uf)
         } else {
             $('#id_endereco').val('')

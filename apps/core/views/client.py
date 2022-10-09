@@ -1,7 +1,9 @@
 import xlwt
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import Http404, HttpResponse
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
 
@@ -47,6 +49,8 @@ class ClientListViewSearch(ClientListViewBase):
 
         if not search_term:
             raise Http404()
+
+        qs = qs.values('id', 'tipo', 'nome', 'cpf', 'cnpj', 'status')
 
         qs = qs.filter(
             Q(status__iexact=search_term) | # noqa: W504 E261
@@ -100,6 +104,19 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
         })
 
         return ctx
+
+    def form_valid(self, form):
+        
+        form.save()
+        messages.success(self.request, 'Cliente cadastrado com sucesso.')
+
+        return redirect('core:client_list')
+
+    def form_invalid(self, form):
+
+        messages.error(self.request, 'Erros encontrados no formulário.')
+
+        return super().form_invalid(form)
 
 
 class ClientExportExcelView(ClientListViewSearch):
