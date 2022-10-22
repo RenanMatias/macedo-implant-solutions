@@ -5,7 +5,13 @@ from .models import (Bank, Billing, Client, Material, Order, Payment, Sale,
 
 
 class ClientAdmin(admin.ModelAdmin):
-    ...
+    list_display = ('id', 'tipo', 'status', 'nome', 'username')
+    list_display_links = ('id', 'nome')
+    search_fields = ('id', 'nome', 'tipo', 'status')
+    list_filter = ('tipo', 'status')
+    list_per_page = 10
+    list_editable = ('status',)
+    ordering = ('-id',)
 
 
 class OrderAdmin(admin.ModelAdmin):

@@ -2,8 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 from utils.cpf_cnpj_validation import cnpj_validate, cpf_validate
-from utils.django_forms import (add_attr, add_placeholder, disable_field,
-                                override_attr)
+from utils.django_forms import add_attr, add_placeholder, override_attr
 
 from ..models.client import Client
 
@@ -149,9 +148,6 @@ class ClientForm(forms.ModelForm):
         elif tipo == 'Paciente':
             if cpf is None:
                 errors += [('cpf', 'Campo Obrigatório')]
-
-        elif tipo == 'Instituição':
-            ...
 
         if tipo == 'Dentista' or tipo == 'Paciente':
             if cep is None:

@@ -16,16 +16,6 @@ def add_placeholder(field, placeholder_val):
     add_attr(field, 'placeholder', placeholder_val)
 
 
-def disable_field(fields: list):
-    """disable the fields
-
-    Args:
-        fields (list): fields
-    """
-    for field in fields:
-        add_attr(field, 'disabled')
-
-
 def strong_password(password: str) -> bool:
     regex = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$')
 

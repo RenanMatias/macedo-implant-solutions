@@ -53,6 +53,7 @@ class ClientListViewSearch(ClientListViewBase):
         qs = qs.values('id', 'tipo', 'nome', 'cpf', 'cnpj', 'status')
 
         qs = qs.filter(
+            Q(id__iexact=search_term) | # noqa: W504 E261
             Q(status__iexact=search_term) | # noqa: W504 E261
             Q(tipo__icontains=search_term) | # noqa: W504 E261
             Q(nome__icontains=search_term) | # noqa: W504 E261
@@ -106,8 +107,12 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
         return ctx
 
     def form_valid(self, form):
+
+        client: Client = form.save(commit=False)
         
-        form.save()
+        client.username = self.request.user
+
+        client.save()
         messages.success(self.request, 'Cliente cadastrado com sucesso.')
 
         return redirect('core:client_list')
